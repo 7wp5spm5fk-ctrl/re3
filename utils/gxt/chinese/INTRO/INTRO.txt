@@ -10,7 +10,7 @@ INT1_G	该怎么办才好啊，桑尼？
 INT1_H	我们装作对他友好的样子，让他为我们在外头卖命。如何？
 INT1_I	家族曾决议要南下发展，对吧？
 INT1_J	罪恶都市如今正是兵家必争之地。
-INT1_K	古巴佬、墨西哥佬…他妈的…
+INT1_K	哥伦比亚佬、墨西哥佬…他妈的…
 INT1_L	甚至那些古巴难民们也想在那儿捞些油水。
 INT1_M	那可都是毒品生意啊，桑尼，
 INT1_N	没有哪家黑手党愿意去淌这趟浑水！
@@ -52,7 +52,7 @@ INT3_D	懂了吧？OK，精神点。去吧。
 INT3_E	All right. Take it easy, now.
 INT3_F	I'm right here. The cars running, baby!
 INT3_G	货带来没？
-INT3_H	哥伦比亚产，A级纯品，老兄！（此人为GTAVCS主角 维克托·万斯）
+INT3_H	哥伦比亚产，A级纯品，老兄！
 INT3_I	钱呢？
 INT3_J	都不是大钞，也洗过了。
 INT3_K	我看这桩能成，老兄，哈哈哈哈哈！
