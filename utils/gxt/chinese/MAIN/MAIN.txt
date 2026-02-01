@@ -1126,7 +1126,7 @@ FEL_FRE	法语
 FEL_GER	德语
 FEL_ITA	意大利语
 FEL_SPA	西班牙语
-FEM_FRM	垂直同步
+FEM_FRM	限制刷新率
 FEM_LOD	绘制距离
 FEM_MM	主菜单
 FEM_NO	否
@@ -1215,7 +1215,7 @@ FET_DAM	动态声音建模
 FET_DEF	恢复为默认值
 FET_DSN	默认外观Skin.bmp
 FET_EIG	不能为本行动定义按键
-FET_GFX 图形设置
+FET_GFX	图形设置
 FET_HRD	默认值已重设
 FET_LG	载入游戏
 FET_MIG	用←, →, 鼠标滚轮调整
