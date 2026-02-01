@@ -1,5 +1,0 @@
-gxt -g VC -i "native/american.txt" -o "../../gamefiles/TEXT/american.gxt"
-gxt -g VC -i "native/french.txt" -o "../../gamefiles/TEXT/french.gxt"
-gxt -g VC -i "native/german.txt" -o "../../gamefiles/TEXT/german.gxt"
-gxt -g VC -i "native/italian.txt" -o "../../gamefiles/TEXT/italian.gxt"
-gxt -g VC -i "native/spanish.txt" -o "../../gamefiles/TEXT/spanish.gxt"
