@@ -875,6 +875,7 @@ FEA_SFX	音效音量
 FEA_SPK	扬声器
 FEA_ST	立体声
 FEB	Feb
+FEC_360	XBOX 360 手柄
 FEC_ABR	加速，制动或倒退
 FEC_ACC	加速
 FEC_ACL	油门
@@ -911,6 +912,9 @@ FEC_DBG	调试清单
 FEC_DLF	删除失败。
 FEC_DLL	DEL
 FEC_DOT	NUM .
+FEC_DS2	双震手柄 2
+FEC_DS3	双震手柄 3
+FEC_DS4	双震手柄 4
 FEC_DWA	↓
 FEC_EEX	进出载具
 FEC_END	END
@@ -925,6 +929,7 @@ FEC_FOR	前进
 FEC_FPC	第一人称镜头
 FEC_FPO	第一人称武器
 FEC_FPR	第一人称操控
+FEC_FRC	载具内自由视角
 FEC_FWS	NUM /
 FEC_HAB	制动
 FEC_HBR	载具制动
@@ -938,10 +943,14 @@ FEC_ILU	第一人称反转鼠标
 FEC_INC	载具内
 FEC_IRT	INS
 FEC_IVH	翻转鼠标 水平方向
+FEC_IVP	反转手柄垂直方向
 FEC_IVV	垂直翻转鼠标
 FEC_JBO	手柄~1~键
+FEC_JDE	已检测到手柄
 FEC_JMP	跳跃
+FEC_JOD	检测手柄
 FEC_JOY	手柄
+FEC_JPR	按下要使用的手柄上的任意按键…
 FEC_JUM	跳跃
 FEC_LAL	左ALT
 FEC_LB	向后看
@@ -986,6 +995,7 @@ FEC_MXT	MXB2
 FEC_NA	N/A
 FEC_NLK	NUMLOCK
 FEC_NMN	NUM~1~
+FEC_NSW	任天堂 Switch 手柄
 FEC_NTR	下一个目标
 FEC_NUM	NUM
 FEC_NUS	未使用
@@ -993,6 +1003,7 @@ FEC_NWE	下一个武器
 FEC_OJS	每个动作只可有一个按键
 FEC_OKK	完成
 FEC_OMS	只可有一个鼠标按键
+FEC_ONE	XBOX ONE 手柄
 FEC_ONF	徒步
 FEC_ORR	或
 FEC_PAD	手柄
@@ -1056,6 +1067,7 @@ FEC_TSM	车辆支线任务结束
 FEC_TSS	拍照
 FEC_TUC	炮塔操控
 FEC_TWO	只允许用两个键盘按键
+FEC_TYP	手柄类型
 FEC_UJS	只允许用一个手柄按钮
 FEC_UMS	只允许用一个鼠标按键
 FEC_UNB	未绑定
@@ -1070,18 +1082,29 @@ FEC_ZIN	放大
 FEC_ZOT	缩小
 FEDL_WR	删除存档中…
 FEDS_TB	退回
+FED_AAS	抗锯齿
+FED_BIL	双线性
 FED_BRI	亮度
+FED_CLF	色彩滤镜
 FED_DBG	调试清单
 FED_DFL	CTheScripts::DbgFlag
 FED_DLS	Big White Debug Light Switched
 FED_DSR	Debug Streaming Requests
+FED_FIL	纹理过滤
+FED_FLS	全屏
 FED_HUD	角色状态栏
+FED_MBL	动态模糊
+FED_MFX	材质特效
+FED_MIP	MIP 映射
+FED_NEO	NEO
 FED_PAH	Parse Heap
 FED_POS	屏幕位置
+FED_PRM	行人边缘光
 FED_RDB	仅显示图标
 FED_RDM	地图与图标
 FED_RDR	雷达模式
 FED_RES	分辨率
+FED_RGL	道路光泽
 FED_RID	Reload IDE
 FED_RIP	Reload IPL
 FED_SCP	gbShowCollisionPolys
@@ -1090,7 +1113,11 @@ FED_SCZ	展示精选区
 FED_SPR	Show Ped Road Groups
 FED_SUB	字幕
 FED_TRA	模糊效果
+FED_TRL	三线性
+FED_VPL	车辆渲染管线
 FED_WIS	宽屏模式
+FED_WLM	世界光照贴图
+FED_WND	窗口化
 FEH_AUD	音频
 FEH_BRI	资讯
 FEH_CON	操控
@@ -1121,19 +1148,38 @@ FEI_STA	START键 -
 FEI_STO	停止
 FEI_ZOO	调节
 FELD_WR	载入中…
+FEL_CHS	简体中文
 FEL_ENG	英语
 FEL_FRE	法语
 FEL_GER	德语
 FEL_ITA	意大利语
+FEL_JAP	日语
+FEL_POL	波兰语
+FEL_RUS	俄语
 FEL_SPA	西班牙语
+FEM_2PR	PS2 Alpha 测试
+FEM_AUT	自动
+FEM_CAR	车辆密度
+FEM_CSB	过场边框
 FEM_FRM	限制刷新率
+FEM_HIG	高
+FEM_ISL	地图内存占用
 FEM_LOD	绘制距离
+FEM_LOW	低
+FEM_MED	中
 FEM_MM	主菜单
+FEM_MOB	移动版
 FEM_NO	否
+FEM_NON	无
+FEM_NRM	正常
 FEM_OFF	关
 FEM_OK	完成
 FEM_ON	开
+FEM_PED	行人密度
+FEM_PS2	PS2
 FEM_RET	重试
+FEM_SCF	屏幕比例
+FEM_SIM	简单
 FEM_SL1	存档1 未使用
 FEM_SL2	存档2 未使用
 FEM_SL3	存档3 未使用
@@ -1144,6 +1190,7 @@ FEM_SL7	存档7 未使用
 FEM_SL8	存档8 未使用
 FEM_STE	使用音响
 FEM_VSC	垂直同步
+FEM_XBX	XBOX
 FEM_YES	是
 FEN_STA	开始游戏
 FEO_AUD	音频设定
@@ -1186,6 +1233,7 @@ FESZ_QL	所有未存取的进度将丢失，继续载入吗？
 FESZ_QO	覆盖存档？
 FESZ_QR	确定开始新游戏吗？所有的进度将丢失。继续？
 FESZ_QZ	确定保存此次进度？
+FESZ_RM	重试？
 FESZ_WR	保存中…
 FES_CAN	取消
 FES_CHE	警告！已激活作弊码！此举将对你的存档记录造成负面影响！最好不要在激活作弊码后保存游戏。
@@ -1204,6 +1252,7 @@ FES_SCG	保存当前进度吗？
 FES_SET	使用外观
 FES_SKN	外观名
 FES_SSC	保存成功。点选完成继续。
+FET_AGS	手柄设置
 FET_APP	应用
 FET_CAC	行动
 FET_CCR	载具中
@@ -1225,6 +1274,7 @@ FET_PAU	无名汉化组 1.0正式版
 FET_PS	玩家外观设定
 FET_QG	退出游戏
 FET_RIG	选择一个新按键定义这个行动
+FET_RMS	重玩任务
 FET_RSC	硬件不兼容 - 已重设为默认设置
 FET_RSO	重设为默认进度
 FET_SG	保存进度
@@ -2020,6 +2070,7 @@ PORN_C	按下~h~~k~~PED_ANSWER_PHONE~~w~购买电影厂。花费$~1~
 PORN_L	按下~h~~k~~PED_ANSWER_PHONE~~w~购买电影厂。花费$~1~
 PORN_NO	以你目前的势力来看，购买电影厂是异想天开啊。继续完成主线任务吧。
 PORN_T	按下~h~~k~~PED_ANSWER_PHONE~~w~购买电影厂。花费$~1~
+PQUINS	完美四连疯狂特技
 PREDATR	Predator
 PRINST	完美双重疯狂特技
 PRNT_C	按下~h~~k~~PED_ANSWER_PHONE~~w~购买印刷厂。花费$~1~
