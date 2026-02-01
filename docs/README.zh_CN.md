@@ -1,85 +1,59 @@
-# reVC - GTA VC 源代码反编译项目
+# reVC
+
+**Languages:** [English](README.md) | [中文 (Chinese)]
+
+<img src="../res/images/logo.svg" width="128px"></img>
 
 ## 简介
 
-本仓库包含了 GTA Vice City（[miami](https://github.com/GTAmodding/re3/tree/miami/) 分支）的完整反编译源代码。
+本仓库在 re3 原仓库上做出以下改动：
 
-项目已在 Windows、Linux、macOS 和 FreeBSD 上进行测试，支持 x86、amd64、arm 和 arm64 架构。\
-渲染引擎可使用原始 RenderWare (D3D8) 或其重新实现版本 [librw](https://github.com/aap/librw) (D3D9、OpenGL 2.1 或更高版本、OpenGL ES 2.0 或更高版本)。\
-音频支持 MSS（使用原始 GTA 中的 dll）或 OpenAL。
+- 移除了 canon 构建
+- 增加了 nix flake 构建和打包
+- 修复 workflows 使它们可以正常工作
 
-目前无法为 PS2 或 Xbox 构建。如果您有兴趣参与，请与我们联系。
+为了方便在 NixOS 上安装和运行游戏，在 [re3-falke](https://github.com/gujial/re3-flake) 中编写了对应的 Nix 包装器。
+
+> 包装器可以做到自动配置 re3、reVC、reLCS，但仍然需要有原版游戏文件，默认使用 Steam 的默认安装路径寻找原版游戏文件（除reLCS之外）。
+
+相比其他分支，reVC 分支做出了更多改动：
+
+- 内置的中文支持
+- 添加了用于解包、翻译、打包文本的相关工具
+- 添加了用于自动生成字符表的工具
+- 添加了基于字符表和自定义字体生成中文字体贴图的工具
+- 支持渲染 Emoji
+- 启用了日文和波兰文的设置选项，但是并未实装
+- 修改了退出时的海报
+
+修改游戏的过程中使用到了以下工具/代码，在此致谢：
+
+- 中文文本基于无名汉化补丁 1.0 正式版修改、适配和补充
+- 中文文字渲染代码来自 [Ova1122/Revc_Chs](https://github.com/Ova1122/Revc_Chs)
+- 中文映射表生成器`dat_generator`实现时参考了无名汉化组 [WMHHZ/VC.SA.Plugin](https://github.com/WMHHZ/VC.SA.Plugin/blob/master/VCGXTBuilder/VCGXT.cpp) 的代码
+- GXT 文件打包和解包工具实现时使用了 [Lzh102938/III.VC.SAGXTExtracter](https://github.com/Lzh102938/III.VC.SAGXTExtracter/blob/main/builder/VCGXT.PY) 的模块
+- 将中文字符 png 文件打包为 txd 文件时使用了 [Magic.TXD](https://www.gtagarage.com/mods/show.php?id=27862)
+- 渲染中文字符 png 文件使用了 pillow 和 pilmoji 模块
+
+后续的修改依然集中于 miami 分支。
 
 ## 安装
 
-- reVC 需要游戏资源才能运行，因此您**必须**拥有 [GTA Vice City 的复制品](https://store.steampowered.com/app/12110/Grand_Theft_Auto_Vice_City/)。
-- 构建 reVC 或下载最新版本：
-  - [Windows D3D9 MSS 32bit](https://nightly.link/GTAmodding/re3/workflows/reVC_msvc_x86/miami/reVC_Release_win-x86-librw_d3d9-mss.zip)
-  - [Windows D3D9 64bit](https://nightly.link/GTAmodding/re3/workflows/reVC_msvc_amd64/miami/reVC_Release_win-amd64-librw_d3d9-oal.zip)
-  - [Windows OpenGL 64bit](https://nightly.link/GTAmodding/re3/workflows/reVC_msvc_amd64/miami/reVC_Release_win-amd64-librw_gl3_glfw-oal.zip)
-  - [Linux 64bit](https://nightly.link/GTAmodding/re3/workflows/build-cmake-conan/miami/ubuntu-18.04-gl3.zip)
-  - [MacOS 64bit x86-64](https://nightly.link/GTAmodding/re3/workflows/build-cmake-conan/miami/macos-latest-gl3.zip)
-- 将下载的 zip 文件解压到您的 GTA Vice City 目录并运行 reVC。zip 包含二进制文件、更新和其他游戏文件以及 OpenAL 所需的 dll。
+### 非 Nixos 的情况
 
-## 截图
+准备好原版游戏文件，之后在 Actions 中找到需要的版本压缩包，将全部文件覆盖到原版游戏文件夹。
 
-![screen_ 1613087332](https://user-images.githubusercontent.com/1521437/107714111-f84f3200-6ccc-11eb-902e-d757481d579a.png)
-![screen_ 1613086852](https://user-images.githubusercontent.com/1521437/107714115-fa18f580-6ccc-11eb-9de5-eb4cd04865d3.png)
-![screen_ 1613086989](https://user-images.githubusercontent.com/1521437/107714103-f38a7e00-6ccc-11eb-88a3-c8c2033c51d6.png)
-![screen_ 1613087193](https://user-images.githubusercontent.com/1521437/107714106-f4bbab00-6ccc-11eb-96a9-13821d9b9684.png)
+### Nixos 和其他使用 Nix 软件包管理器的情况
 
-## 改进特性
-
-我们已实现了许多对原始游戏的改进和优化。
-这些可以在 `core/config.h` 中进行配置。
-有些可以在运行时切换，有些则不能。
-
-* 修复了许多大小和大的错误
-* 用户文件（保存和设置）存储在 GTA 根目录中
-* 设置存储在 reVC.ini 文件中而不是 gta_vc.set
-* 调试菜单，可做和更改各种事项（Ctrl-M 打开）
-* 调试摄像机（Ctrl-B 切换）
-* 可旋转的摄像机
-* XInput 控制器支持（Windows）
-* 岛屿之间无加载屏幕（菜单中的"地图内存使用"）
-* 渲染
-  * 宽屏支持（正确缩放的 HUD、菜单和视角）
-  * PS2 MatFX（车辆反射）
-  * PS2 alpha 测试（更好的透明度渲染）
-  * Xbox 车辆渲染
-  * Xbox 世界光照贴图渲染（需要 Xbox 地图）
-  * Xbox 模型边缘光
-  * Xbox 屏幕雨滴
-  * 更可自定义的颜色过滤
-* 菜单
-  * 更多选项
-  * 控制器配置菜单
-  * ...
-* 可以加载来自其他平台的 DFF 和 TXD，可能会有性能损失
-* ...
-
-## 待做事项
-
-以下事项将很好做/待做：
-
-* 修复高 FPS 下的物理问题
-* 改进低端设备的性能，尤其是 Raspberry Pi 上的 OpenGL 层（如果您有相关经验，请与我们联系）
-* [PS2 移植](https://github.com/GTAmodding/re3/wiki/PS2-port)
-* Xbox 移植（不太重要）
-* 反编译剩余的未使用/调试函数
-* 将 CodeWarrior 构建与原始二进制文件进行比较以获得更准确的代码（非常繁琐）
+参考 [re3-falke](https://github.com/gujial/re3-flake) 安装，二进制文件已上传至 Nix Cache。
 
 ## 模组
 
-资源修改（模型、纹理、处理、脚本等）应以与原始 GTA 基本相同的方式工作。
-
-修改代码的模组（dll/asi、CLEO、限制调整器）**不会**工作。
-这些模组的某些功能已在 reVC 中实现（SkyGFX、GInput、SilentPatch、宽屏修复的大部分内容），
-其他可以轻松实现（增加限制，参见 `config.h`），
-其他则必须重新编写并直接集成到代码中。
-对于给您带来的不便，我们深表歉意。
+目前兼容情况与原版 reVC 相同，后续可能考虑扩展脚本系统。
 
 ## 从源代码构建  
+
+> 推荐使用 Nix Flakes 构建。Wiki 链接需要通过互联网档案馆访问。
 
 使用 premake 时，如果要将可执行文件通过后构建脚本移动到那里，您可能希望将 GTA_VC_RE_DIR 环境变量指向 GTA Vice City 根文件夹。
 
@@ -173,58 +147,62 @@ premake5 --with-librw gmake2 && cd build && make -j5 config=release_macosx-amd64
 
 如果您愿意，您也可以使用 CodeWarrior 7 使用提供的 codewarrior/reVC.mcp 项目来编译 reVC - 这需要原始的 RW34 库和 DX8 SDK。与 MSVC 构建相比，此构建不稳定，主要用作参考。
 
+## utils 工具说明
+
+以下工具位于 `utils/`，用于处理中文字体/文本资源。
+
+### utils/dat - Chinese.dat 与字符表生成
+
+- `dat_generator.py`：从 GXT 文本（单个 `.txt` 或目录）提取字符集，生成 `Chinese.dat` 与 `CHARACTERS.txt`。
+- `build.sh`：批量生成到 `gamefiles/` 与 `local_gamefiles/`。
+
+示例：
+
+```bash
+python utils/dat/dat_generator.py utils/gxt/chinese --table gamefiles/data/Chinese.dat --characters utils/dat/CHARACTERS.txt
+```
+
+### utils/fonts - 字体贴图生成
+
+- `png_generator.py`：读取 `CHARACTERS.txt`，生成 4096x4096 的 `normal.png` 与 `slant.png`（64x64 网格）。
+- 依赖：`pillow`，可选 `pilmoji`（用于 emoji 渲染），见 `requirements.txt`。
+
+示例：
+
+```bash
+python -m pip install -r utils/fonts/requirements.txt
+python utils/fonts/png_generator.py --characters utils/dat/CHARACTERS.txt --output-dir utils/fonts
+```
+
+可选参数：`--normal-font` / `--slant-font` 用于指定自定义字体文件。
+
+### utils/gxt - 文本打包/解包与翻译辅助
+
+- `pack_gxt.py`：将 `utils/gxt/chinese` 或 `utils/gxt/american` 目录打包为 `.gxt`（目前仅支持 VC）。
+- `unpack_gxt.py`：将 `.gxt` 解包为文本目录。
+- `compare_translations.py`：对比 `american/` 与 `chinese/`，输出 `missing_translations.txt` 与 `extra_translations.txt`。
+- `apply_translation_diffs.py`：将缺失/多余条目回写到对应目录并排序。
+- `build.sh`：将中文与英文打包到 `gamefiles/` 与 `local_gamefiles/`。
+- `build_native.bat`：Windows 下使用 `gxt` 工具从 `native/` 文本生成其他语言的 `.gxt`。
+
+示例：
+
+```bash
+python utils/gxt/pack_gxt.py utils/gxt/chinese vc gamefiles/TEXT/chinese.gxt
+python utils/gxt/unpack_gxt.py gamefiles/TEXT/chinese.gxt utils/gxt/chinese
+python utils/gxt/compare_translations.py
+python utils/gxt/apply_translation_diffs.py
+```
+
 ## 贡献
 
-只要不是 linux/跨平台骨架/兼容层，仓库中未在预处理器条件（如 FIX_BUGS）后面的所有代码都**完全**是从原始二进制文件反编译的代码。
-
-我们**不**接受自定义代码，除非它由预处理器条件包装，或者它是 linux/跨平台骨架/兼容层。
-
-我们只接受这些类型的 PR：
-
-- 存在于至少一个 GTA 中的新特性（如果它不在 III/VC 中，则不必是反编译）
-- 游戏、UI 或 UX 错误修复（如果是对原始代码的修复，应该在 FIX_BUGS 后面）
-- 尚未反编译的平台特定和/或未使用的代码
-- 使反编译代码更易理解/准确，如"哪个代码会产生这个汇编"
-- 新的跨平台骨架/兼容层或对其的改进
-- 翻译修复，用于原始游戏支持的语言
-- 增加可维护性的代码
-
-我们有一个[编码风格](https://github.com/GTAmodding/re3/blob/master/CODING_STYLE.md)文档，但没有很好地遵循或强制执行。
-
-不要使用 C++11 或更高版本的功能。
-
-## 历史
-
-re3 始于 2018 年春季，
-最初是一种测试反编译碰撞和物理代码的方式
-在游戏内。
-这是通过将游戏的单个函数替换为
-它们的 dll 反编译对应物来完成的。
-
-经过一些工作后，项目休眠了大约一年
-并在 2019 年 5 月再次被接取并推送到 github。
-当时我（aap）已反编译了大约 10k 行代码，并估计
-最终游戏有大约 200-250k。
-其他人很快加入了这项工作（Fire_Head、shfil、erorcun 和 Nick007J
-按时间顺序，Serge 稍后），我们取得了非常快的进展
-在 2019 年夏季
-之后步伐放缓了一些。
-
-由于每个人都在新冠疫情开始期间待在家里
-每个人都有大量时间再次参与 re3 工作
-我们终于在 2020 年 4 月获得了独立的 exe（当时大约 180k 行）。
-
-在最初的兴奋和进一步修复和抛光代码之后，
-reVC 在 2020 年 5 月初由从 re3 代码开始
-而不是通过用 dll 替换函数从头开始。
-经过几个月的大部分稳定进展，我们认为 reVC
-在 12 月完成。
-
-从那时起，我们已经开始了 reLCS，目前正在进行中。
+本仓库致力于完善原版游戏体验，并实现多平台同步，也可作为改版游戏的基础版本，相比于原 re3 仓库对贡献的要求更低。
 
 ## 许可证
 
-我们不认为我们有地位为此代码给予许可证。\
-该代码应仅用于教育、文档和修改目的。\
-我们不鼓励盗版或商业使用。\
-请保持衍生作品开源并提供适当的鸣名。
+保留原 re3 仓库的要求，不使用许可证，代码仅用于教育、文档和修改目的，不支持盗版和商业使用。
+
+## 文档补充
+
+- [原仓库自述文件](./README.origin.md)
+- [汉化工作流程](./chs.zh_CN.md)

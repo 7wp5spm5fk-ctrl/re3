@@ -2,87 +2,58 @@
 
 **Languages:** [English] | [中文 (Chinese)](docs/README.zh_CN.md)
 
-## Intro
+<img src="res/images/logo.svg" width="128px"></img>
 
-In this repository you'll find the fully reversed source code for GTA III ([master](https://github.com/GTAmodding/re3/tree/master/) branch) and GTA VC ([miami](https://github.com/GTAmodding/re3/tree/miami/) branch).
+## Introduction
 
-It has been tested and works on Windows, Linux, MacOS and FreeBSD, on x86, amd64, arm and arm64.\
-Rendering is handled either by original RenderWare (D3D8)
-or the reimplementation [librw](https://github.com/aap/librw) (D3D9, OpenGL 2.1 or above, OpenGL ES 2.0 or above).\
-Audio is done with MSS (using dlls from original GTA) or OpenAL.
+This repository makes the following changes to the original re3 repository:
 
-We cannot build for PS2 or Xbox yet. If you're interested in doing so, get in touch with us.
+- Removed canon build
+- Added nix flake build and packaging
+- Fixed workflows to make them work properly
+
+For easy installation and running on NixOS, a Nix wrapper has been written in [re3-flake](https://github.com/gujial/re3-flake).
+
+> The wrapper can automatically configure re3, reVC, reLCS, but you still need the original game files. By default, it uses Steam's default installation path to find the original game files (except for reLCS).
+
+Compared to other branches, the reVC branch has made more changes:
+
+- Built-in Chinese support
+- Added related tools for unpacking, translating, and packing text
+- Added tool for automatically generating character tables
+- Added tool for generating Chinese font texture maps based on character tables and custom fonts
+- Support for rendering Emoji
+- Enabled Japanese and Polish settings options, but not yet fully implemented
+- Modified the poster when exiting
+
+The following tools/code were used during game modification, thanks to:
+
+- Chinese text is based on the unnamed Chinese patch 1.0 official version, modified, adapted and supplemented
+- Chinese text rendering code comes from [Ova1122/Revc_Chs](https://github.com/Ova1122/Revc_Chs)
+- Chinese mapping table generator `dat_generator` referred to the code of unnamed Chinese group [WMHHZ/VC.SA.Plugin](https://github.com/WMHHZ/VC.SA.Plugin/blob/master/VCGXTBuilder/VCGXT.cpp)
+- GXT file packing and unpacking tools used modules from [Lzh102938/III.VC.SAGXTExtracter](https://github.com/Lzh102938/III.VC.SAGXTExtracter/blob/main/builder/VCGXT.PY)
+- Used [Magic.TXD](https://www.gtagarage.com/mods/show.php?id=27862) when packing Chinese character png files into txd files
+- Used pillow and pilmoji modules to render Chinese character png files
+
+Subsequent modifications will continue to focus on the miami branch.
 
 ## Installation
 
-- reVC requires game assets to work, so you **must** own [a copy of GTA Vice City](https://store.steampowered.com/app/12110/Grand_Theft_Auto_Vice_City/).
-- Build reVC or download the latest build:
-  - [Windows D3D9 MSS 32bit](https://nightly.link/GTAmodding/re3/workflows/reVC_msvc_x86/miami/reVC_Release_win-x86-librw_d3d9-mss.zip)
-  - [Windows D3D9 64bit](https://nightly.link/GTAmodding/re3/workflows/reVC_msvc_amd64/miami/reVC_Release_win-amd64-librw_d3d9-oal.zip)
-  - [Windows OpenGL 64bit](https://nightly.link/GTAmodding/re3/workflows/reVC_msvc_amd64/miami/reVC_Release_win-amd64-librw_gl3_glfw-oal.zip)
-  - [Linux 64bit](https://nightly.link/GTAmodding/re3/workflows/build-cmake-conan/miami/ubuntu-18.04-gl3.zip)
-  - [MacOS 64bit x86-64](https://nightly.link/GTAmodding/re3/workflows/build-cmake-conan/miami/macos-latest-gl3.zip)
-- Extract the downloaded zip over your GTA VC directory and run reVC. The zip includes the binary, updated and additional gamefiles and in case of OpenAL the required dlls.
+### For non-NixOS systems
 
-## Screenshots
+Prepare the original game files, then find the required version archive in Actions, and copy all files to the original game folder.
 
-![screen_ 1613087332](https://user-images.githubusercontent.com/1521437/107714111-f84f3200-6ccc-11eb-902e-d757481d579a.png)
-![screen_ 1613086852](https://user-images.githubusercontent.com/1521437/107714115-fa18f580-6ccc-11eb-9de5-eb4cd04865d3.png)
-![screen_ 1613086989](https://user-images.githubusercontent.com/1521437/107714103-f38a7e00-6ccc-11eb-88a3-c8c2033c51d6.png)
-![screen_ 1613087193](https://user-images.githubusercontent.com/1521437/107714106-f4bbab00-6ccc-11eb-96a9-13821d9b9684.png)
+### For NixOS and other systems using Nix package manager
 
-## Improvements
+Refer to [re3-flake](https://github.com/gujial/re3-flake) for installation, binaries have been uploaded to Nix Cache.
 
-We have implemented a number of changes and improvements to the original game.
-They can be configured in `core/config.h`.
-Some of them can be toggled at runtime, some cannot.
+## Mods
 
-* Fixed a lot of smaller and bigger bugs
-* User files (saves and settings) stored in GTA root directory
-* Settings stored in reVC.ini file instead of gta_vc.set
-* Debug menu to do and change various things (Ctrl-M to open)
-* Debug camera (Ctrl-B to toggle)
-* Rotatable camera
-* XInput controller support (Windows)
-* No loading screens between islands ("map memory usage" in menu)
-* Rendering
-  * Widescreen support (properly scaled HUD, Menu and FOV)
-  * PS2 MatFX (vehicle reflections)
-  * PS2 alpha test (better rendering of transparency)
-  * Xbox vehicle rendering
-  * Xbox world lightmap rendering (needs Xbox map)
-  * Xbox ped rim light
-  * Xbox screen rain droplets
-  * More customizable colourfilter
-* Menu
-  * More options
-  * Controller configuration menu
-  * ...
-* Can load DFFs and TXDs from other platforms, possibly with a performance penalty
-* ...
-
-## To-Do
-
-The following things would be nice to have/do:
-
-* Fix physics for high FPS
-* Improve performance on lower end devices, especially the OpenGL layer on the Raspberry Pi (if you have experience with this, please get in touch)
-* [PS2 port](https://github.com/GTAmodding/re3/wiki/PS2-port)
-* Xbox port (not quite as important)
-* reverse remaining unused/debug functions
-* compare CodeWarrior build with original binary for more accurate code (very tedious)
-
-## Modding
-
-Asset modifications (models, texture, handling, script, ...) should work the same way as with original GTA for the most part.
-
-Mods that make changes to the code (dll/asi, CLEO, limit adjusters) will *not* work.
-Some things these mods do are already implemented in re3 (much of SkyGFX, GInput, SilentPatch, Widescreen fix),
-others can easily be achieved (increasing limis, see `config.h`),
-others will simply have to be rewritten and integrated into the code directly.
-Sorry for the inconvenience.
+Current compatibility is the same as the original reVC, may consider extending the script system in the future.
 
 ## Building from Source  
+
+> Building with Nix Flakes is recommended. Wiki links need to be accessed through the Internet Archive.
 
 When using premake, you may want to point GTA_VC_RE_DIR environment variable to GTA Vice City root folder if you want the executable to be moved there via post-build script.
 
@@ -172,63 +143,66 @@ premake5 --with-librw gmake2 && cd build && make -j5 config=release_macosx-amd64
 
 > :information_source: There are various settings in [config.h](https://github.com/GTAmodding/re3/tree/miami/src/core/config.h), you may want to take a look there.
 
-> :information_source: reVC uses completely homebrew RenderWare-replacement rendering engine; [librw](https://github.com/aap/librw/). librw comes as submodule of re3, but you also can use LIBRW enviorenment variable to specify path to your own librw.
+> :information_source: reVC uses completely homebrew RenderWare-replacement rendering engine; [librw](https://github.com/aap/librw/). librw comes as submodule of re3, but you also can use LIBRW environment variable to specify path to your own librw.
 
 If you feel the need, you can also use CodeWarrior 7 to compile reVC using the supplied codewarrior/reVC.mcp project - this requires the original RW34 libraries, and the DX8 SDK. The build is unstable compared to the MSVC builds though, and is mostly meant to serve as a reference.
 
+## Utils Tools Documentation
+
+The following tools are located in `utils/` for handling Chinese font/text resources.
+
+### utils/dat - Chinese.dat and Character Table Generation
+
+- `dat_generator.py`: Extracts character sets from GXT text (single `.txt` or directory), generates `Chinese.dat` and `CHARACTERS.txt`.
+- `build.sh`: Batch generation to `gamefiles/` and `local_gamefiles/`.
+
+Example:
+
+```bash
+python utils/dat/dat_generator.py utils/gxt/chinese --table gamefiles/data/Chinese.dat --characters utils/dat/CHARACTERS.txt
+```
+
+### utils/fonts - Font Texture Generation
+
+- `png_generator.py`: Reads `CHARACTERS.txt`, generates 4096x4096 `normal.png` and `slant.png` (64x64 grid).
+- Dependencies: `pillow`, optional `pilmoji` (for emoji rendering), see `requirements.txt`.
+
+Example:
+
+```bash
+python -m pip install -r utils/fonts/requirements.txt
+python utils/fonts/png_generator.py --characters utils/dat/CHARACTERS.txt --output-dir utils/fonts
+```
+
+Optional parameters: `--normal-font` / `--slant-font` for specifying custom font files.
+
+### utils/gxt - Text Packing/Unpacking and Translation Assistance
+
+- `pack_gxt.py`: Packs `utils/gxt/chinese` or `utils/gxt/american` directory into `.gxt` (currently only supports VC).
+- `unpack_gxt.py`: Unpacks `.gxt` into text directory.
+- `compare_translations.py`: Compares `american/` and `chinese/`, outputs `missing_translations.txt` and `extra_translations.txt`.
+- `apply_translation_diffs.py`: Writes missing/extra entries back to corresponding directories and sorts them.
+- `build.sh`: Packs Chinese and English to `gamefiles/` and `local_gamefiles/`.
+- `build_native.bat`: Uses `gxt` tool on Windows to generate `.gxt` files for other languages from `native/` text.
+
+Example:
+
+```bash
+python utils/gxt/pack_gxt.py utils/gxt/chinese vc gamefiles/TEXT/chinese.gxt
+python utils/gxt/unpack_gxt.py gamefiles/TEXT/chinese.gxt utils/gxt/chinese
+python utils/gxt/compare_translations.py
+python utils/gxt/apply_translation_diffs.py
+```
+
 ## Contributing
-As long as it's not linux/cross-platform skeleton/compatibility layer, all of the code on the repo that's not behind a preprocessor condition(like FIX_BUGS) are **completely** reversed code from original binaries.  
 
-We **don't** accept custom codes, as long as it's not wrapped via preprocessor conditions, or it's linux/cross-platform skeleton/compatibility layer.
-
-We accept only these kinds of PRs;
-
-- A new feature that exists in at least one of the GTAs (if it wasn't in III/VC then it doesn't have to be decompilation)  
-- Game, UI or UX bug fixes (if it's a fix to original code, it should be behind FIX_BUGS)
-- Platform-specific and/or unused code that's not been reversed yet
-- Makes reversed code more understandable/accurate, as in "which code would produce this assembly".
-- A new cross-platform skeleton/compatibility layer, or improvements to them
-- Translation fixes, for languages original game supported
-- Code that increase maintainability  
-
-We have a [Coding Style](https://github.com/GTAmodding/re3/blob/master/CODING_STYLE.md) document that isn't followed or enforced very well.
-
-Do not use features from C++11 or later.
-
-
-## History
-
-re3 was started sometime in the spring of 2018,
-initially as a way to test reversed collision and physics code
-inside the game.
-This was done by replacing single functions of the game
-with their reversed counterparts using a dll.
-
-After a bit of work the project lay dormant for about a year
-and was picked up again and pushed to github in May 2019.
-At the time I (aap) had reversed around 10k lines of code and estimated
-the final game to have around 200-250k.
-Others quickly joined the effort (Fire_Head, shfil, erorcun and Nick007J
-in time order, and Serge a bit later) and we made very quick progress
-throughout the summer of 2019
-after which the pace slowed down a bit.
-
-Due to everyone staying home during the start of the Corona pandemic
-everybody had a lot of time to work on re3 again and
-we finally got a standalone exe in April 2020 (around 180k lines by then).
-
-After the initial excitement and fixing and polishing the code further,
-reVC was started in early May 2020 by starting from re3 code,
-not by starting from scratch replacing functions with a dll.
-After a few months of mostly steady progress we considered reVC
-finished in December.
-
-Since then we have started reLCS, which is currently work in progress.
-
+This repository is dedicated to improving the original game experience and implementing cross-platform synchronization. It can also serve as a base version for modified games. Compared to the original re3 repository, the requirements for contributions are lower.
 
 ## License
 
-We don't feel like we're in a position to give this code a license.\
-The code should only be used for educational, documentation and modding purposes.\
-We do not encourage piracy or commercial use.\
-Please keep derivate work open source and give proper credit.
+Keeping the requirements of the original re3 repository, no license is used. The code is for educational, documentation and modification purposes only. Piracy and commercial use are not supported.
+
+## Additional Documentation
+
+- [Original Repository README](docs/README.origin.md)
+- [Chinese Localization Workflow](docs/chs.zh_CN.md)
