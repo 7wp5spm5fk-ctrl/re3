@@ -1,0 +1,12 @@
+FIREPRO	救火任务以达到12级。托马斯·“汤米”·维赛迪现已获得防火的能力！
+F_CANC	~r~救火任务结束！
+F_EXTIN	灭火数：
+F_FAIL1	救火任务结束。
+F_FAIL2	~r~太慢了！人家都给烧死了！
+F_PASS1	大火已扑灭！
+F_STAR1	~g~~a~地区发生火灾！速速前去灭火！
+F_START	~g~~a~地区发生火灾！速速前去灭火！
+SIREN_1	按~h~~k~~VEHICLE_HORN~~w~鸣笛。
+SIREN_2	按~h~~k~~VEHICLE_HORN~~w~鸣笛。
+SPRAY_1	按~h~~k~~PED_FIREWEAPON~~w~喷水。按~h~~k~~VEHICLE_TURRETLEFT~~w~与~h~~k~~VEHICLE_TURRETRIGHT~~w~控制喷射方向。
+SPRAY_4	按~h~~k~~PED_FIREWEAPON~~w~喷水。按~h~~k~~VEHICLE_TURRETLEFT~~w~与~h~~k~~VEHICLE_TURRETRIGHT~~w~控制喷射方向。

@@ -1,0 +1,79 @@
+INT1_A	汤米·维赛迪…哼！妈的。
+INT1_A1	去看望他一下，怎么样？
+INT1_A2	看看他进展如何。
+INT1_B	真没想到他出狱了。
+INT1_C	只要他学会低调，就不会生乱子的。
+INT1_D	只要他重获了自由，
+INT1_E	又怎么可能不生乱子。
+INT1_F	这对我们的生意不利啊。
+INT1_G	该怎么办才好啊，桑尼？
+INT1_H	我们装作对他友好的样子，让他为我们在外头卖命。如何？
+INT1_I	家族曾决议要南下发展，对吧？
+INT1_J	罪恶都市如今正是兵家必争之地。
+INT1_K	古巴佬、墨西哥佬…他妈的…
+INT1_L	甚至那些古巴难民们也想在那儿捞些油水。
+INT1_M	那可都是毒品生意啊，桑尼，
+INT1_N	没有哪家黑手党愿意去淌这趟浑水！
+INT1_O	时代在改变，
+INT1_P	我们家族可不能眼巴巴地看着冤家又吃肉又喝汤。
+INT1_Q	所以呢，我们派一个小喽啰过去为我们料理脏活…
+INT1_R	我们坐享其成。如何？
+INT1_S	我们那里的线人是哪一个？
+INT1_T	肯·罗森伯格，废柴律师一个。
+INT1_U	他怎么能看得住维赛迪啊？
+INT1_V	不需要他管。
+INT1_W	让维赛迪随意发展就好，
+INT1_X	给他点启动资金，好让他开始。如何？
+INT1_Y	给他些时间。
+INT1_Z	然后我们南下，
+INT2_A	嘿，嘿！伙计们！我是，呃，肯·罗森伯格！嘿！嘿嘿，太好啦，嘿！
+INT2_B	那么，呃，我带你们去交易地点，OK？
+INT2_C	我已经和供货商聊过了，他们非常，哼哈哈…
+INT2_D	渴望和我们建立贸易关系，所以呢，嗯，
+INT2_E	如果一切顺利，我们应该，嗯，
+INT2_F	能让自己捞足了油水，你懂得…
+INT2_G	太好啦…
+INT2_H	OK，那么，供货商是俩兄弟。
+INT2_I	一个负责…呃，交易。
+INT2_J	另一个负责驾驶直升机。
+INT2_K	Now they operate out of Mexico,
+INT2_L	no, no, no, wait...
+INT2_M	They own a farm in Panama.
+INT2_N	Okay, all right, listen -
+INT2_O	you guys, when we get there should I stay in the car,
+INT2_P	or do you guys want me to come in with you guys?
+INT2_Q	No. Stay in the car.
+INT2_R	You know what, I thought about it,
+INT2_S	I'm gonna watch the car.
+INT3_A	看，他们的直升机来了。
+INT3_B	好了，钱在这儿。
+INT3_C	他们想要在公开场所直接交易。
+INT3_D	懂了吧？OK，精神点。去吧。
+INT3_E	All right. Take it easy, now.
+INT3_F	I'm right here. The cars running, baby!
+INT3_G	货带来没？
+INT3_H	哥伦比亚产，A级纯品，老兄！（此人为GTAVCS主角 维克托·万斯）
+INT3_I	钱呢？
+INT3_J	都不是大钞，也洗过了。
+INT3_K	我看这桩能成，老兄，哈哈哈哈哈！
+INT3_L	上车！快走！走啊！
+INT3_M	让我看看。
+INT3_N	操！
+INT4_A	Screwed! We're screwed!
+INT4_B	This is soo typical,
+INT4_C	I poke my head out of the gutter for one freakin' second,
+INT4_D	and fate shovels shit in my face!
+INT4_E	Well, screw you!
+INT4_F	Shut your face and quit complaining! You're alive, aren't ya'?
+INT4_G	Drop me right up here.
+INT4_H	Go dump the car, then go get some sleep.
+INT4_I	I'll drop by your office tomorrow and we can start sorting this mess out.
+INT4_J	OK, that's a good idea, I'll get some sleep.
+INT4_K	What are you gonna do?
+INT4_L	Make my way back to my hotel,
+INT4_M	clear my head, and figure this crap out.
+INT4_N	OK.
+INTRO1	我刚从阴沟里探出头来呼一口气，老天就往我脸上盖了一盆屎！
+INTRO2	去睡一会儿吧。
+INTRO3	你打算怎么办？
+INTRO4	我明天来你的办公室，一起看看怎么解决这桩破事。

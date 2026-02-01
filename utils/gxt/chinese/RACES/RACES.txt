@@ -1,0 +1,24 @@
+RACEHLP	~w~请按~h~ ~k~~PED_SPRINT~ ~w~开始比赛。 按~h~ ~k~~VEHICLE_ENTER_EXIT~ ~w~可以退出。
+RACES00	赛道 ~1~：
+RACES01	速霸
+RACES02	滨海飞车
+RACES03	边城拉力
+RACES04	飞车高手
+RACES05	电光火石！
+RACES06	罪城拉力赛
+RACES07	入场费： $~1~
+RACES08	最佳时间： ~1~：~1~
+RACES09	最佳纪录： 第一名
+RACES10	最佳纪录： 第二名
+RACES11	最佳纪录： 第三名
+RACES12	最佳纪录： 第四名
+RACES13	赛道长度： ~1~.~1~ km
+RACES15	最佳时间： 无
+RACES16	最佳纪录： 无
+RACES19	你不能参加这场比赛。
+RACES22	最佳时间： ~1~：0~1~
+RACES23	赛道长度： ~1~.~1~英里
+RACES_1	~g~找辆速度快点的车，参加比赛！
+RACES_2	~g~谁跟你赛跑啊？！是司机就赶紧上车！
+RACES_3	3..2..1.. GO GO GO!
+RACES_8	~r~失败是成功之母！再接再厉吧！
