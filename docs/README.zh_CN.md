@@ -34,6 +34,7 @@
 - GXT 文件打包和解包工具实现时使用了 [Lzh102938/III.VC.SAGXTExtracter](https://github.com/Lzh102938/III.VC.SAGXTExtracter/blob/main/builder/VCGXT.PY) 的模块
 - 将中文字符 png 文件打包为 txd 文件时使用了 [Magic.TXD](https://www.gtagarage.com/mods/show.php?id=27862)
 - 渲染中文字符 png 文件使用了 pillow 和 pilmoji 模块
+- 中文字体暂时使用的是 wqy-zenhei 和 tegaki_zatsu_normal，后续可能会调整
 
 后续的修改依然集中于 miami 分支。
 

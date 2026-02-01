@@ -28,12 +28,13 @@ Compared to other branches, the reVC branch has made more changes:
 
 The following tools/code were used during game modification, thanks to:
 
-- Chinese text is based on the unnamed Chinese patch 1.0 official version, modified, adapted and supplemented
+- Chinese text is based on the Unnamed Chinese patch (WMHHZ) 1.0 official version, modified, adapted and supplemented
 - Chinese text rendering code comes from [Ova1122/Revc_Chs](https://github.com/Ova1122/Revc_Chs)
-- Chinese mapping table generator `dat_generator` referred to the code of unnamed Chinese group [WMHHZ/VC.SA.Plugin](https://github.com/WMHHZ/VC.SA.Plugin/blob/master/VCGXTBuilder/VCGXT.cpp)
+- Chinese mapping table generator `dat_generator` referred to the code of Unnamed Chinese group [WMHHZ/VC.SA.Plugin](https://github.com/WMHHZ/VC.SA.Plugin/blob/master/VCGXTBuilder/VCGXT.cpp)
 - GXT file packing and unpacking tools used modules from [Lzh102938/III.VC.SAGXTExtracter](https://github.com/Lzh102938/III.VC.SAGXTExtracter/blob/main/builder/VCGXT.PY)
 - Used [Magic.TXD](https://www.gtagarage.com/mods/show.php?id=27862) when packing Chinese character png files into txd files
 - Used pillow and pilmoji modules to render Chinese character png files
+- Used wqy-zenhei and tegaki_zatsu_normal as Chinese fonts. May be changed later.
 
 Subsequent modifications will continue to focus on the miami branch.
 
