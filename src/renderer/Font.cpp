@@ -262,7 +262,6 @@ int CFont::PS2Symbol = BUTTON_NONE;
 int CFont::ButtonsSlot = -1;
 #endif // BUTTON_ICONS
 
-// ����֧��
 #include <cstdio>
 #include <cstdlib>
 struct CharPos {
@@ -279,7 +278,6 @@ GetCharPos(wchar chr)
 	return sTable[chr];
 }
 
-// ����
 bool
 ReadTable()
 {
@@ -432,7 +430,6 @@ CFont::LoadButtons(const char *txdPath)
 }
 #endif // BUTTON_ICONS
 
-//�ʵ�����1
 uint8 clickNUM = 0;
 
 #ifdef MORE_LANGUAGES
@@ -580,7 +577,7 @@ CFont::PrintCharDispatcher(float arg_x, float arg_y, wchar arg_char)
 		if(RenderState.bFontHalfTexture) { arg_char = FindNewCharacter(arg_char); }
 
 		
-		PrintChar(arg_x, arg_y, arg_char); // ��128Ǯ����ʾ�ı�����
+		PrintChar(arg_x, arg_y, arg_char);
 
 	} else {
 		PrintCHSChar(arg_x, arg_y, arg_char);
@@ -1289,7 +1286,6 @@ CFont::PrintString(float xstart, float ystart, wchar *s)
 {
 	
 	if(IsChinese()) {
-		//�ʵ�����
 		//2wchar tts[] = {'C', 'H', 'I', 'N', 'E', 'S', 'E', '\0'};
 		std::wstring wa = L"FEL_CHS missing";
 		std::wstring ws=(wchar_t*)s;
@@ -1303,14 +1299,7 @@ CFont::PrintString(float xstart, float ystart, wchar *s)
 			
 		}
 
-		// int a = sizeof( wchar_t);
-		// wchar_t *ww = L"��";
-		// int b = ww[0];
-		//  font.RenderText(s, &tfont, xstart, ystart, 0.8, Details.color);
-		// font.RenderText(NewFont::WstringTOWchar(L"���aaa"), &tfont, 0, 0, 0.8, Details.color);
 		PrintString_Chs(xstart, ystart, s);
-		// font.RenderText(s, &tfont, xstart, ystart, 0.8, Details.color);
-		// PrintString_Chs(xstart, ystart, s);
 		return;
 	}
 

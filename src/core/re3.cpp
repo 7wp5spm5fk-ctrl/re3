@@ -140,10 +140,8 @@ void
 CustomFrontendOptionsPopulate(void)
 {
 	// Most of custom options are done statically in MenuScreensCustom.cpp, we add them here only if they're dependent to extra files
-	//������Զ���ѡ��� MenuScreensCustom.cpp �о�̬��ɣ�ֻ�е����������ڶ����ļ�ʱ�����ǲŽ������ӵ��˴�
 	int fd;
 	// These work only if we have neo folder, so they're dynamically added
-	// ֻ�е������� neo �ļ���ʱ����Щ�Ż������ã���������Ƕ�̬���ӵ�
 #ifdef EXTENDED_PIPELINES
 	const char *vehPipelineNames[] = { "FED_MFX", "FED_NEO" };
 	const char *off_on[] = { "FEM_OFF", "FEM_ON" };
@@ -166,11 +164,9 @@ CustomFrontendOptionsPopulate(void)
 	}
 #endif
 	// Add outsourced language translations, if files are found
-	// ����ҵ��ļ�������������Է���
 #ifdef MORE_LANGUAGES
 	int fd2;
 	FrontendOptionSetCursor(MENUPAGE_LANGUAGE_SETTINGS, 5, false);
-#if 0
 	if (fd = CFileMgr::OpenFile("text/polish.gxt")) {
 		if (fd2 = CFileMgr::OpenFile("models/fonts_p.txd")) {
 			FrontendOptionAddDynamic("FEL_POL", 0, 0, MENUALIGN_CENTER, nil, nil, LangPolSelect, nil, nil);
@@ -178,7 +174,6 @@ CustomFrontendOptionsPopulate(void)
 		}
 		CFileMgr::CloseFile(fd);
 	}
-#endif
 
 	if (fd = CFileMgr::OpenFile("text/russian.gxt")) {
 		if (fd2 = CFileMgr::OpenFile("models/fonts_r.txd")) {
@@ -196,7 +191,6 @@ CustomFrontendOptionsPopulate(void)
 		CFileMgr::CloseFile(fd);
 	}
 
-#if 0
 	if (fd = CFileMgr::OpenFile("text/japanese.gxt")) {
 		if (fd2 = CFileMgr::OpenFile("models/fonts_j.txd")) {
 			FrontendOptionAddDynamic("FEL_JAP", 0, 0, MENUALIGN_CENTER, nil, nil, LangJapSelect, nil, nil);
@@ -204,7 +198,6 @@ CustomFrontendOptionsPopulate(void)
 		}
 		CFileMgr::CloseFile(fd);
 	}
-#endif
 #endif
 
 }
@@ -510,7 +503,6 @@ bool LoadINISettings()
 	ReadIniIfExists("VideoMode", "Depth", &FrontEndMenuManager.m_nPrefsDepth);
 	ReadIniIfExists("VideoMode", "Subsystem", &FrontEndMenuManager.m_nPrefsSubsystem);
 	// Windowed mode is loaded below in CUSTOM_FRONTEND_OPTIONS section
-	//����ģʽ������� CUSTOM_FRONTEND_OPTIONS �����м���
 #else
 	ReadIniIfExists("Graphics", "VideoMode", &FrontEndMenuManager.m_nDisplayVideoMode);
 #endif
@@ -620,7 +612,6 @@ void SaveINISettings()
 	StoreIni("VideoMode", "Depth", FrontEndMenuManager.m_nPrefsDepth);
 	StoreIni("VideoMode", "Subsystem", FrontEndMenuManager.m_nPrefsSubsystem);
 	// Windowed mode is loaded below in CUSTOM_FRONTEND_OPTIONS section
-	//����ģʽ������� CUSTOM_FRONTEND_OPTIONS �����м���
 #else
 	StoreIni("Graphics", "VideoMode", FrontEndMenuManager.m_nDisplayVideoMode);
 #endif
@@ -1100,7 +1091,6 @@ extern bool gbRenderWorld2;
 		DebugMenuAddVarBool8("Render", "Occlusion debug", &bDispayOccDebugStuff, nil);
 #endif
 #ifdef LIBRW
-		//��
 		//DebugMenuAddVarBool32("Render", "MatFX env map apply light", &rw::MatFX::envMapApplyLight, nil);
 		//DebugMenuAddVarBool32("Render", "MatFX env map flip U", &rw::MatFX::envMapFlipU, nil);
 		//DebugMenuAddVarBool32("Render", "MatFX env map use matcolor", &rw::MatFX::envMapUseMatColor, nil);
