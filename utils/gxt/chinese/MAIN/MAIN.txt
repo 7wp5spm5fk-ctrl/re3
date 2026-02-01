@@ -1054,7 +1054,7 @@ FEC_SVU	保存失败。
 FEC_SZI	狙击枪镜头放大
 FEC_SZO	狙击枪镜头缩小
 FEC_TAB	TAB
-FEC_TAR	目标
+FEC_TAR	瞄准
 FEC_TDO	关闭调试镜头
 FEC_TFD	炮塔向下
 FEC_TFL	视角往左+炮塔向左
