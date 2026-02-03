@@ -30,6 +30,9 @@ Compared to other branches, the reVC branch has made more changes:
    - Can't delete save in Linux
 - Some new features
    - Save game in pause menu
+   - Save game after mission complete in standalone slot
+
+> Save game in mission or vehicle. Auto save will start after Tommy leave the vehicle.
 
 The following tools/code were used during game modification, thanks to:
 
