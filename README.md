@@ -26,8 +26,8 @@ Compared to other branches, the reVC branch has made more changes:
 - Enabled Japanese and Polish settings options, but not yet fully implemented
 - Modified the poster when exiting
 - Fix some bugs
-   - Wrong cursor position when use functional scale in wayland
-   - Can't delete save in Linux
+   - Wrong cursor position when use functional scale multiplier in wayland
+   - Can't delete save file in Linux
 - Some new features
    - Save game in pause menu
    - Save game after mission complete in standalone slot
