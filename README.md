@@ -148,53 +148,6 @@ premake5 --with-librw gmake2 && cd build && make -j5 config=release_macosx-amd64
 
 If you feel the need, you can also use CodeWarrior 7 to compile reVC using the supplied codewarrior/reVC.mcp project - this requires the original RW34 libraries, and the DX8 SDK. The build is unstable compared to the MSVC builds though, and is mostly meant to serve as a reference.
 
-## Utils Tools Documentation
-
-The following tools are located in `utils/` for handling Chinese font/text resources.
-
-### utils/dat - Chinese.dat and Character Table Generation
-
-- `dat_generator.py`: Extracts character sets from GXT text (single `.txt` or directory), generates `Chinese.dat` and `CHARACTERS.txt`.
-- `build.sh`: Batch generation to `gamefiles/` and `local_gamefiles/`.
-
-Example:
-
-```bash
-python utils/dat/dat_generator.py utils/gxt/chinese --table gamefiles/data/Chinese.dat --characters utils/dat/CHARACTERS.txt
-```
-
-### utils/fonts - Font Texture Generation
-
-- `png_generator.py`: Reads `CHARACTERS.txt`, generates 4096x4096 `normal.png` and `slant.png` (64x64 grid).
-- Dependencies: `pillow`, optional `pilmoji` (for emoji rendering), see `requirements.txt`.
-
-Example:
-
-```bash
-python -m pip install -r utils/fonts/requirements.txt
-python utils/fonts/png_generator.py --characters utils/dat/CHARACTERS.txt --output-dir utils/fonts
-```
-
-Optional parameters: `--normal-font` / `--slant-font` for specifying custom font files.
-
-### utils/gxt - Text Packing/Unpacking and Translation Assistance
-
-- `pack_gxt.py`: Packs `utils/gxt/chinese` or `utils/gxt/american` directory into `.gxt` (currently only supports VC).
-- `unpack_gxt.py`: Unpacks `.gxt` into text directory.
-- `compare_translations.py`: Compares `american/` and `chinese/`, outputs `missing_translations.txt` and `extra_translations.txt`.
-- `apply_translation_diffs.py`: Writes missing/extra entries back to corresponding directories and sorts them.
-- `build.sh`: Packs Chinese and English to `gamefiles/` and `local_gamefiles/`.
-- `build_native.bat`: Uses `gxt` tool on Windows to generate `.gxt` files for other languages from `native/` text.
-
-Example:
-
-```bash
-python utils/gxt/pack_gxt.py utils/gxt/chinese vc gamefiles/TEXT/chinese.gxt
-python utils/gxt/unpack_gxt.py gamefiles/TEXT/chinese.gxt utils/gxt/chinese
-python utils/gxt/compare_translations.py
-python utils/gxt/apply_translation_diffs.py
-```
-
 ## Contributing
 
 This repository is dedicated to improving the original game experience and implementing cross-platform synchronization. It can also serve as a base version for modified games. Compared to the original re3 repository, the requirements for contributions are lower.
@@ -206,4 +159,4 @@ Keeping the requirements of the original re3 repository, no license is used. The
 ## Additional Documentation
 
 - [Original Repository README](docs/README.origin.md)
-- [Chinese Localization Workflow](docs/chs.zh_CN.md)
+- [Localization Workflow](docs/localization.en.md)

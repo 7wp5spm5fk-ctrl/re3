@@ -148,53 +148,6 @@ premake5 --with-librw gmake2 && cd build && make -j5 config=release_macosx-amd64
 
 如果您愿意，您也可以使用 CodeWarrior 7 使用提供的 codewarrior/reVC.mcp 项目来编译 reVC - 这需要原始的 RW34 库和 DX8 SDK。与 MSVC 构建相比，此构建不稳定，主要用作参考。
 
-## utils 工具说明
-
-以下工具位于 `utils/`，用于处理中文字体/文本资源。
-
-### utils/dat - Chinese.dat 与字符表生成
-
-- `dat_generator.py`：从 GXT 文本（单个 `.txt` 或目录）提取字符集，生成 `Chinese.dat` 与 `CHARACTERS.txt`。
-- `build.sh`：批量生成到 `gamefiles/` 与 `local_gamefiles/`。
-
-示例：
-
-```bash
-python utils/dat/dat_generator.py utils/gxt/chinese --table gamefiles/data/Chinese.dat --characters utils/dat/CHARACTERS.txt
-```
-
-### utils/fonts - 字体贴图生成
-
-- `png_generator.py`：读取 `CHARACTERS.txt`，生成 4096x4096 的 `normal.png` 与 `slant.png`（64x64 网格）。
-- 依赖：`pillow`，可选 `pilmoji`（用于 emoji 渲染），见 `requirements.txt`。
-
-示例：
-
-```bash
-python -m pip install -r utils/fonts/requirements.txt
-python utils/fonts/png_generator.py --characters utils/dat/CHARACTERS.txt --output-dir utils/fonts
-```
-
-可选参数：`--normal-font` / `--slant-font` 用于指定自定义字体文件。
-
-### utils/gxt - 文本打包/解包与翻译辅助
-
-- `pack_gxt.py`：将 `utils/gxt/chinese` 或 `utils/gxt/american` 目录打包为 `.gxt`（目前仅支持 VC）。
-- `unpack_gxt.py`：将 `.gxt` 解包为文本目录。
-- `compare_translations.py`：对比 `american/` 与 `chinese/`，输出 `missing_translations.txt` 与 `extra_translations.txt`。
-- `apply_translation_diffs.py`：将缺失/多余条目回写到对应目录并排序。
-- `build.sh`：将中文与英文打包到 `gamefiles/` 与 `local_gamefiles/`。
-- `build_native.bat`：Windows 下使用 `gxt` 工具从 `native/` 文本生成其他语言的 `.gxt`。
-
-示例：
-
-```bash
-python utils/gxt/pack_gxt.py utils/gxt/chinese vc gamefiles/TEXT/chinese.gxt
-python utils/gxt/unpack_gxt.py gamefiles/TEXT/chinese.gxt utils/gxt/chinese
-python utils/gxt/compare_translations.py
-python utils/gxt/apply_translation_diffs.py
-```
-
 ## 贡献
 
 本仓库致力于完善原版游戏体验，并实现多平台同步，也可作为改版游戏的基础版本，相比于原 re3 仓库对贡献的要求更低。
@@ -206,4 +159,4 @@ python utils/gxt/apply_translation_diffs.py
 ## 文档补充
 
 - [原仓库自述文件](./README.origin.md)
-- [汉化工作流程](./chs.zh_CN.md)
+- [本地化工作流程](./localization.zh_CN.md)
