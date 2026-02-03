@@ -35,6 +35,7 @@
 #include "GameLogic.h"
 #include "Bike.h"
 #include "Wanted.h"
+#include "GenericGameStorage.h"
 
 int8 CRunningScript::ProcessCommands500To599(int32 command)
 {
@@ -2337,6 +2338,12 @@ int8 CRunningScript::ProcessCommands700To799(int32 command)
 		CStats::CheckPointReachedSuccessfully();
 		CTheScripts::LastMissionPassedTime = CTimer::GetTimeInMilliseconds();
 		CGameLogic::RemoveShortCutDropOffPointForMission();
+		
+#ifdef MISSION_REPLAY
+		// 任务成功后自动保存
+		AutoSaveAfterMission();
+#endif
+		
 		return 0;
 	}
 	case COMMAND_SET_CHAR_RUNNING:

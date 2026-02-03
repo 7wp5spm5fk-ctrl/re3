@@ -49,6 +49,7 @@ const uint32 SIZE_OF_ONE_GAME_IN_BYTES = 201729;
 #ifdef MISSION_REPLAY
 int8 IsQuickSave;
 const int PAUSE_SAVE_SLOT = SLOT_COUNT;
+const int AUTO_SAVE_SLOT = SLOT_COUNT - 1;  // 自动保存槽位（使用槽位9，索引8）
 #endif
 
 char DefaultPCSaveFileName[260];
@@ -1241,5 +1242,38 @@ bool SaveGameForPause(int type)
 	IsQuickSave = 0;
 	DisplaySaveResult(res, CStats::LastMissionPassedName);
 	return true;
+}
+
+// 任务成功后自动保存到专用槽位
+bool AutoSaveAfterMission()
+{
+	// 检查游戏状态是否允许保存
+	if (gGameState != GS_PLAYING_GAME) {
+		debug("AutoSaveAfterMission failed: not in playing game state");
+		return false;
+	}
+	
+	// 如果正在执行任务重试相关操作，不保存
+	if (AllowMissionReplay != MISSION_RETRY_STAGE_NORMAL && AllowMissionReplay != MISSION_RETRY_STAGE_WAIT_FOR_TIMER_AFTER_RESTART) {
+		debug("AutoSaveAfterMission failed during AllowMissionReplay %d", AllowMissionReplay);
+		return false;
+	}
+	
+	debug("AutoSaveAfterMission: saving mission %s to auto-save slot", CStats::LastMissionPassedName);
+	
+	// 保存到自动保存槽位
+	IsQuickSave = SAVE_TYPE_QUICKSAVE;
+	MissionStartTime = 0;
+	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
+	PcSaveHelper.PopulateSlotInfo();
+	IsQuickSave = 0;
+	
+	if (res == 0) {
+		debug("AutoSaveAfterMission: successfully saved to auto-save slot");
+		return true;
+	} else {
+		debug("AutoSaveAfterMission: save failed with error %d", res);
+		return false;
+	}
 }
 #endif

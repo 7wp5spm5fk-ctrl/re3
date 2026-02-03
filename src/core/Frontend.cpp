@@ -1070,7 +1070,7 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 #endif
 			wchar* rightText = nil;
 			wchar* leftText;
-			if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot >= SAVESLOT_1 && aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot <= SAVESLOT_8) {
+			if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot >= SAVESLOT_1 && aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot <= SAVESLOT_9) {
 				CFont::SetColor(CRGBA(0, 0, 0, FadeIn(255)));
 				CFont::SetFontStyle(FONT_LOCALE(FONT_STANDARD));
 				CFont::SetScale(MENU_X(MEDIUMTEXT_X_SCALE), MENU_Y(MEDIUMTEXT_Y_SCALE));
@@ -1115,18 +1115,24 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 
 			if (aScreens[m_nCurrScreen].m_aEntries[i].m_Action != MENUACTION_LABEL && aScreens[m_nCurrScreen].m_aEntries[i].m_EntryName[0] != '\0') {
 
-				if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot >= SAVESLOT_1 && aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot <= SAVESLOT_8) {
+				if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot >= SAVESLOT_1 && aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot <= SAVESLOT_9) {
 					CFont::SetRightJustifyOff();
 
+					int slotIndex = aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot - SAVESLOT_1;
 					leftText = nil;
-					if (Slots[i] == SLOT_OK) {
-						leftText = GetNameOfSavedGame(i);
-						rightText = GetSavedGameDateAndTime(i);
+					if (Slots[slotIndex] == SLOT_OK) {
+						leftText = GetNameOfSavedGame(slotIndex);
+						rightText = GetSavedGameDateAndTime(slotIndex);
 					}
 
 					if (!leftText || leftText[0] == '\0') {
-						sprintf(gString, "FEM_SL%d", i + 1);
-						leftText = TheText.Get(gString);
+						// 为第9个槽位（自动保存）使用特殊标签
+						if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot == SAVESLOT_9) {
+							leftText = TheText.Get("FEM_AS");
+						} else {
+							sprintf(gString, "FEM_SL%d", slotIndex + 1);
+							leftText = TheText.Get(gString);
+						}
 					}
 				} else {
 					leftText = TheText.Get(aScreens[m_nCurrScreen].m_aEntries[i].m_EntryName);
@@ -1425,7 +1431,7 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 					int saveSlot = aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot;
 					if (rightText || action == MENUACTION_DRAWDIST || action == MENUACTION_BRIGHTNESS || action == MENUACTION_MUSICVOLUME ||
 						action == MENUACTION_SFXVOLUME || action == MENUACTION_MP3VOLUMEBOOST || action == MENUACTION_MOUSESENS ||
-						saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_8
+						saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_9
 #ifdef CUSTOM_FRONTEND_OPTIONS
 						|| action == MENUACTION_CFO_SLIDER
 #endif
@@ -1505,7 +1511,7 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 					if (rightText) {
 						CFont::SetCentreOff();
 						CFont::SetRightJustifyOn();
-						if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot >= SAVESLOT_1 && aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot <= SAVESLOT_8) {
+						if (aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot >= SAVESLOT_1 && aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot <= SAVESLOT_9) {
 							CFont::SetFontStyle(FONT_LOCALE(FONT_STANDARD));
 							CFont::SetScale(MENU_X(MEDIUMTEXT_X_SCALE), MENU_Y(MEDIUMTEXT_Y_SCALE));
 						} else {
@@ -4776,7 +4782,7 @@ CMenuManager::ProcessUserInput(uint8 goDown, uint8 goUp, uint8 optionSelected, u
 			{
 				int saveSlot = aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_SaveSlot;
 
-				if (saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_8) {
+				if (saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_9) {
 					m_nCurrSaveSlot = saveSlot - SAVESLOT_1;
 					if (Slots[m_nCurrSaveSlot] != SLOT_EMPTY && Slots[m_nCurrSaveSlot] != SLOT_CORRUPTED) {
 						if (m_nCurrScreen == MENUPAGE_CHOOSE_LOAD_SLOT) {
@@ -5033,10 +5039,10 @@ CMenuManager::ProcessUserInput(uint8 goDown, uint8 goUp, uint8 optionSelected, u
 		if (!goBack) {
 #ifdef FIX_BUGS
 			int saveSlot = aScreens[currScreen].m_aEntries[currOption].m_SaveSlot;
-			if (saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_8 && Slots[currOption] != SLOT_OK)
+			if (saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_9 && Slots[currOption] != SLOT_OK)
 #else
 			int saveSlot = aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_SaveSlot;
-			if (saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_8 && Slots[m_nCurrOption] != SLOT_OK)
+			if (saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_9 && Slots[m_nCurrOption] != SLOT_OK)
 #endif
 				DMAudio.PlayFrontEndSound(SOUND_FRONTEND_FAIL, 0);
 			else

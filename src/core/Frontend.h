@@ -170,6 +170,7 @@ enum eSaveSlot
 	SAVESLOT_6,
 	SAVESLOT_7,
 	SAVESLOT_8,
+	SAVESLOT_9,  // 自动保存槽位
 	SAVESLOT_LABEL = 36
 };
 

@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "PCSave.h"
 
-#define SLOT_COUNT (8)
+#define SLOT_COUNT (9)  // 8个手动槽位 + 1个自动保存槽位
 
 void InitRadioStationPositionList();
 int32 GetSavedRadioStationPosition(int32 station);
@@ -48,6 +48,11 @@ extern uint32 TimeToStayFadedBeforeFadeOut;
 extern char SaveFileNameJustSaved[260]; // 8F2570
 
 const char TopLineEmptyFile[] = "THIS FILE IS NOT VALID YET";
+
+#ifdef MISSION_REPLAY
+extern const int AUTO_SAVE_SLOT;
+bool AutoSaveAfterMission();  // 任务成功后自动保存
+#endif
 
 #ifdef MISSION_REPLAY
 extern int8 IsQuickSave; // originally int
