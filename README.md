@@ -26,6 +26,8 @@ Compared to other branches, the reVC branch has made more changes:
 - Enabled Japanese and Polish settings options, but not yet fully implemented
 - Modified the poster when exiting
 - Fix some bugs
+- Some new features
+   - Save game in pause menu
 
 The following tools/code were used during game modification, thanks to:
 
