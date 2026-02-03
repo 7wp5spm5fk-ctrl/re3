@@ -51,6 +51,27 @@ int8 IsQuickSave;
 const int AUTO_SAVE_SLOT = 8;  // 自动保存槽位（第9个槽位，索引8）
 const int PAUSE_SAVE_SLOT = 9;  // 暂停快速保存槽位（第10个槽位，索引9）
 bool bNeedDelayedAutoSave = false;  // 是否待保存
+
+static bool PerformAutoSaveNow()
+{
+	// 禁止在任务脚本仍在运行时保存
+	if (CTheScripts::bAlreadyRunningAMissionScript)
+		return false;
+	
+	debug("PerformAutoSaveNow: saving mission %s to auto-save slot", CStats::LastMissionPassedName);
+	IsQuickSave = SAVE_TYPE_QUICKSAVE;
+	MissionStartTime = 0;
+	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
+	PcSaveHelper.PopulateSlotInfo();
+	IsQuickSave = 0;
+
+	if (res == 0) {
+		debug("PerformAutoSaveNow: successfully saved to auto-save slot");
+		return true;
+	}
+	debug("PerformAutoSaveNow: save failed with error %d", res);
+	return false;
+}
 #endif
 
 char DefaultPCSaveFileName[260];
@@ -1254,6 +1275,13 @@ bool AutoSaveAfterMission()
 		debug("AutoSaveAfterMission failed: not in playing game state");
 		return false;
 	}
+
+	// 如果仍在任务脚本中，延迟保存
+	if (CTheScripts::bAlreadyRunningAMissionScript) {
+		debug("AutoSaveAfterMission: mission script still running, delaying auto-save");
+		bNeedDelayedAutoSave = true;
+		return true;
+	}
 	
 	// 如果正在执行任务重试相关操作，不保存
 	if (AllowMissionReplay != MISSION_RETRY_STAGE_NORMAL && AllowMissionReplay != MISSION_RETRY_STAGE_WAIT_FOR_TIMER_AFTER_RESTART) {
@@ -1274,21 +1302,8 @@ bool AutoSaveAfterMission()
 		bNeedDelayedAutoSave = true;
 		return true;
 	}
-	
-	debug("AutoSaveAfterMission: saving mission %s to auto-save slot", CStats::LastMissionPassedName);
-	
-	// 使用与手动保存完全相同的逻辑
-	MissionStartTime = 0;
-	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
-	PcSaveHelper.PopulateSlotInfo();
-	
-	if (res == 0) {
-		debug("AutoSaveAfterMission: successfully saved to auto-save slot");
-		return true;
-	} else {
-		debug("AutoSaveAfterMission: save failed with error %d", res);
-		return false;
-	}
+
+	return PerformAutoSaveNow();
 }
 
 // 尝试执行延迟自动保存
@@ -1305,6 +1320,11 @@ bool TryPerformDelayedAutoSave()
 		bNeedDelayedAutoSave = false;
 		return false;
 	}
+
+	// 若仍在任务脚本中，继续等待
+	if (CTheScripts::bAlreadyRunningAMissionScript) {
+		return false;
+	}
 	
 	// 检查玩家是否仍然在载具上
 	if (pPlayer->InVehicle()) {
@@ -1313,19 +1333,7 @@ bool TryPerformDelayedAutoSave()
 	
 	// 玩家已离开载具，执行保存
 	debug("TryPerformDelayedAutoSave: player left vehicle, performing auto-save now");
-	
-	// 使用与手动保存完全相同的逻辑
-	MissionStartTime = 0;
-	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
-	PcSaveHelper.PopulateSlotInfo();
 	bNeedDelayedAutoSave = false;
-	
-	if (res == 0) {
-		debug("TryPerformDelayedAutoSave: successfully saved to auto-save slot");
-		return true;
-	} else {
-		debug("TryPerformDelayedAutoSave: save failed with error %d", res);
-		return false;
-	}
+	return PerformAutoSaveNow();
 }
 #endif
