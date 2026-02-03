@@ -52,6 +52,8 @@ const char TopLineEmptyFile[] = "THIS FILE IS NOT VALID YET";
 #ifdef MISSION_REPLAY
 extern const int AUTO_SAVE_SLOT;
 bool AutoSaveAfterMission();  // 任务成功后自动保存
+bool TryPerformDelayedAutoSave();  // 尝试执行延迟自动保存
+extern bool bNeedDelayedAutoSave;  // 是否待保存（待执行）
 #endif
 
 #ifdef MISSION_REPLAY

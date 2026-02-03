@@ -46,6 +46,7 @@ long _dwOperatingSystemVersion;
 #include "Frontend.h"
 #include "Game.h"
 #include "PCSave.h"
+#include "GenericGameStorage.h"
 #include "MemoryCard.h"
 #include "Sprite2d.h"
 #include "AnimViewer.h"
@@ -2333,6 +2334,10 @@ main(int argc, char *argv[])
 							if (!FrontEndMenuManager.m_PrefsFrameLimiter || (1000.0f / (float)RsGlobal.maxFPS) < ms)
 								RsEventHandler(rsIDLE, (void *)TRUE);
 						}
+#ifdef MISSION_REPLAY
+						// 尝试执行延迟自动保存
+						TryPerformDelayedAutoSave();
+#endif
 						break;
 					}
 				}

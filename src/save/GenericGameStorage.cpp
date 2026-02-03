@@ -50,6 +50,7 @@ const uint32 SIZE_OF_ONE_GAME_IN_BYTES = 201729;
 int8 IsQuickSave;
 const int PAUSE_SAVE_SLOT = SLOT_COUNT;
 const int AUTO_SAVE_SLOT = SLOT_COUNT - 1;  // 自动保存槽位（使用槽位9，索引8）
+bool bNeedDelayedAutoSave = false;  // 是否待保存
 #endif
 
 char DefaultPCSaveFileName[260];
@@ -1259,10 +1260,24 @@ bool AutoSaveAfterMission()
 		return false;
 	}
 	
+	// 获取玩家角色
+	CPlayerPed *pPlayer = FindPlayerPed();
+	if (!pPlayer) {
+		debug("AutoSaveAfterMission failed: player not found");
+		return false;
+	}
+	
+	// 检查玩家是否在载具上
+	if (pPlayer->InVehicle()) {
+		debug("AutoSaveAfterMission: player in vehicle, delaying auto-save until leaving vehicle");
+		bNeedDelayedAutoSave = true;
+		return true;  // 返回true表示已标记待保存
+	}
+	
 	debug("AutoSaveAfterMission: saving mission %s to auto-save slot", CStats::LastMissionPassedName);
 	
-	// 保存到自动保存槽位
-	IsQuickSave = SAVE_TYPE_QUICKSAVE;
+	// 保存到自动保存槽位 - 使用标准保存格式确保兼容性
+	IsQuickSave = SAVE_TYPE_NORMAL;
 	MissionStartTime = 0;
 	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
 	PcSaveHelper.PopulateSlotInfo();
@@ -1273,6 +1288,46 @@ bool AutoSaveAfterMission()
 		return true;
 	} else {
 		debug("AutoSaveAfterMission: save failed with error %d", res);
+		return false;
+	}
+}
+
+// 尝试执行延迟自动保存
+// 此函数应该在游戏主循环中每帧执行（主要于玩家需要检查是否已离开载具）
+bool TryPerformDelayedAutoSave()
+{
+	if (!bNeedDelayedAutoSave) {
+		return false;
+	}
+	
+	CPlayerPed *pPlayer = FindPlayerPed();
+	if (!pPlayer) {
+		debug("TryPerformDelayedAutoSave failed: player not found");
+		bNeedDelayedAutoSave = false;
+		return false;
+	}
+	
+	// 检查玩家是否仍然在载具上，如果是则不执行
+	if (pPlayer->InVehicle()) {
+		return false;  // 仍然在载具上，继续等待
+	}
+	
+	// 玩家已离开载具，执行保存
+	debug("TryPerformDelayedAutoSave: player left vehicle, performing auto-save now");
+	
+	// 使用标准保存格式确保兼容性
+	IsQuickSave = SAVE_TYPE_NORMAL;
+	MissionStartTime = 0;
+	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
+	PcSaveHelper.PopulateSlotInfo();
+	IsQuickSave = 0;
+	bNeedDelayedAutoSave = false;
+	
+	if (res == 0) {
+		debug("TryPerformDelayedAutoSave: successfully saved to auto-save slot");
+		return true;
+	} else {
+		debug("TryPerformDelayedAutoSave: save failed with error %d", res);
 		return false;
 	}
 }

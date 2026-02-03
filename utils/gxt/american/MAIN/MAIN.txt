@@ -1247,11 +1247,13 @@ FES_DSC	Delete Successful. Select OK to continue.
 FES_FMS	Format Successful. Select OK to continue.
 FES_LCG	Load the game and continue playing?
 FES_LOA	Load game
+FES_MSN	Cannot save while in mission
 FES_NGA	New Game
 FES_SCG	Save the current game?
 FES_SET	Use Skin
 FES_SKN	SKIN NAME
 FES_SSC	Save Successful. Select OK to continue.
+FES_VSC	Cannot save while in vehicle
 FET_AGS	GAMEPAD SETTINGS
 FET_APP	APPLY
 FET_CAC	ACTION

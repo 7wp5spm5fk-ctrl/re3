@@ -1247,11 +1247,13 @@ FES_DSC	删除成功。点选完成继续。
 FES_FMS	格式化成功。点选完成继续。
 FES_LCG	载入存档并继续游戏吗？
 FES_LOA	载入存档
+FES_MSN	无法在任务中保存
 FES_NGA	开始新游戏
 FES_SCG	保存当前进度吗？
 FES_SET	使用外观
 FES_SKN	外观名
 FES_SSC	保存成功。点选完成继续。
+FES_VSC	无法在载具中保存
 FET_AGS	手柄设置
 FET_APP	应用
 FET_CAC	行动

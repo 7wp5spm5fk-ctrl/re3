@@ -26,6 +26,7 @@
 #include "MBlur.h"
 #include "PlayerSkin.h"
 #include "PlayerInfo.h"
+#include "PlayerPed.h"
 #include "World.h"
 #include "Renderer.h"
 #include "CdStream.h"
@@ -838,6 +839,12 @@ CMenuManager::DisplayHelperText(char *text)
 			break;
 		case 5:
 			CFont::PrintString(SCREEN_STRETCH_FROM_RIGHT(HELPER_TEXT_RIGHT_MARGIN), SCREEN_SCALE_FROM_BOTTOM(HELPER_TEXT_BOTTOM_MARGIN), TheText.Get("FET_RSC"));
+			break;
+		case 26:
+			CFont::PrintString(SCREEN_STRETCH_FROM_RIGHT(HELPER_TEXT_RIGHT_MARGIN), SCREEN_SCALE_FROM_BOTTOM(HELPER_TEXT_BOTTOM_MARGIN), TheText.Get("FES_VSC"));
+			break;
+		case 27:
+			CFont::PrintString(SCREEN_STRETCH_FROM_RIGHT(HELPER_TEXT_RIGHT_MARGIN), SCREEN_SCALE_FROM_BOTTOM(HELPER_TEXT_BOTTOM_MARGIN), TheText.Get("FES_MSN"));
 			break;
 		default:
 			if (aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action == MENUACTION_NO)
@@ -1653,6 +1660,7 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 		case MENUPAGE_SOUND_SETTINGS:
 		case MENUPAGE_DISPLAY_SETTINGS:
 		case MENUPAGE_MOUSE_CONTROLS:
+		case MENUPAGE_CHOOSE_SAVE_SLOT:
 			DisplayHelperText(nil);
 			break;
 		case MENUPAGE_OPTIONS:
@@ -4829,6 +4837,21 @@ CMenuManager::ProcessUserInput(uint8 goDown, uint8 goUp, uint8 optionSelected, u
 				int saveSlot = aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_SaveSlot;
 
 				if (saveSlot >= 2 && saveSlot <= 9) {
+					if (CTheScripts::IsPlayerOnAMission()) {
+						DMAudio.PlayFrontEndSound(SOUND_FRONTEND_FAIL, 0);
+						SetHelperText(27);
+						break;
+					}
+
+					// 检查玩家是否在载具上
+					CPlayerPed *pPlayer = FindPlayerPed();
+					if (pPlayer && pPlayer->InVehicle()) {
+						// 玩家在载具上，显示错误信息并不进行保存
+						DMAudio.PlayFrontEndSound(SOUND_FRONTEND_FAIL, 0);
+						SetHelperText(26);
+						break;
+					}
+					
 					m_nCurrSaveSlot = m_nCurrOption;
 					SwitchToNewScreen(MENUPAGE_SAVE_OVERWRITE_CONFIRM);
 				}
