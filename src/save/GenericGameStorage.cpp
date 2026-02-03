@@ -1246,9 +1246,10 @@ bool SaveGameForPause(int type)
 }
 
 // 任务成功后自动保存到专用槽位
+// 与手动保存使用相同的逻辑和参数
 bool AutoSaveAfterMission()
 {
-	// 检查游戏状态是否允许保存
+	// 检查游戏状态
 	if (gGameState != GS_PLAYING_GAME) {
 		debug("AutoSaveAfterMission failed: not in playing game state");
 		return false;
@@ -1267,21 +1268,19 @@ bool AutoSaveAfterMission()
 		return false;
 	}
 	
-	// 检查玩家是否在载具上
+	// 检查玩家是否在载具上，延迟保存
 	if (pPlayer->InVehicle()) {
 		debug("AutoSaveAfterMission: player in vehicle, delaying auto-save until leaving vehicle");
 		bNeedDelayedAutoSave = true;
-		return true;  // 返回true表示已标记待保存
+		return true;
 	}
 	
 	debug("AutoSaveAfterMission: saving mission %s to auto-save slot", CStats::LastMissionPassedName);
 	
-	// 保存到自动保存槽位 - 使用标准保存格式确保兼容性
-	IsQuickSave = SAVE_TYPE_NORMAL;
+	// 使用与手动保存完全相同的逻辑
 	MissionStartTime = 0;
 	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
 	PcSaveHelper.PopulateSlotInfo();
-	IsQuickSave = 0;
 	
 	if (res == 0) {
 		debug("AutoSaveAfterMission: successfully saved to auto-save slot");
@@ -1293,7 +1292,7 @@ bool AutoSaveAfterMission()
 }
 
 // 尝试执行延迟自动保存
-// 此函数应该在游戏主循环中每帧执行（主要于玩家需要检查是否已离开载具）
+// 此函数应该在游戏主循环中每帧执行
 bool TryPerformDelayedAutoSave()
 {
 	if (!bNeedDelayedAutoSave) {
@@ -1307,7 +1306,7 @@ bool TryPerformDelayedAutoSave()
 		return false;
 	}
 	
-	// 检查玩家是否仍然在载具上，如果是则不执行
+	// 检查玩家是否仍然在载具上
 	if (pPlayer->InVehicle()) {
 		return false;  // 仍然在载具上，继续等待
 	}
@@ -1315,12 +1314,10 @@ bool TryPerformDelayedAutoSave()
 	// 玩家已离开载具，执行保存
 	debug("TryPerformDelayedAutoSave: player left vehicle, performing auto-save now");
 	
-	// 使用标准保存格式确保兼容性
-	IsQuickSave = SAVE_TYPE_NORMAL;
+	// 使用与手动保存完全相同的逻辑
 	MissionStartTime = 0;
 	int res = PcSaveHelper.SaveSlot(AUTO_SAVE_SLOT);
 	PcSaveHelper.PopulateSlotInfo();
-	IsQuickSave = 0;
 	bNeedDelayedAutoSave = false;
 	
 	if (res == 0) {

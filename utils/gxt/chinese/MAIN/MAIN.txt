@@ -1158,6 +1158,7 @@ FEL_POL	波兰语
 FEL_RUS	俄语
 FEL_SPA	西班牙语
 FEM_2PR	PS2 Alpha 测试
+FEM_AS	自动保存槽位
 FEM_AUT	自动
 FEM_CAR	车辆密度
 FEM_CSB	过场边框
