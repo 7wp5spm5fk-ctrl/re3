@@ -48,8 +48,8 @@ const uint32 SIZE_OF_ONE_GAME_IN_BYTES = 201729;
 
 #ifdef MISSION_REPLAY
 int8 IsQuickSave;
-const int PAUSE_SAVE_SLOT = SLOT_COUNT;
-const int AUTO_SAVE_SLOT = SLOT_COUNT - 1;  // 自动保存槽位（使用槽位9，索引8）
+const int AUTO_SAVE_SLOT = 8;  // 自动保存槽位（第9个槽位，索引8）
+const int PAUSE_SAVE_SLOT = 9;  // 暂停快速保存槽位（第10个槽位，索引9）
 bool bNeedDelayedAutoSave = false;  // 是否待保存
 #endif
 
