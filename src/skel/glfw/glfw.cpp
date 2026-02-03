@@ -1845,8 +1845,12 @@ cursorCB(GLFWwindow* window, double xpos, double ypos) {
 	
 	int winw, winh;
 	glfwGetWindowSize(PSGLOBAL(window), &winw, &winh);
-	FrontEndMenuManager.m_nMouseTempPosX = xpos * (RsGlobal.maximumWidth / winw);
-	FrontEndMenuManager.m_nMouseTempPosY = ypos * (RsGlobal.maximumHeight / winh);
+	if (winw > 0 && winh > 0) {
+		const float scaleX = (float)RsGlobal.maximumWidth / (float)winw;
+		const float scaleY = (float)RsGlobal.maximumHeight / (float)winh;
+		FrontEndMenuManager.m_nMouseTempPosX = (int32)(xpos * scaleX);
+		FrontEndMenuManager.m_nMouseTempPosY = (int32)(ypos * scaleY);
+	}
 }
 
 void

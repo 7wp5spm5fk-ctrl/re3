@@ -25,6 +25,7 @@ Compared to other branches, the reVC branch has made more changes:
 - Support for rendering Emoji
 - Enabled Japanese and Polish settings options, but not yet fully implemented
 - Modified the poster when exiting
+- Fix some bugs
 
 The following tools/code were used during game modification, thanks to:
 
