@@ -930,6 +930,7 @@ FEC_FOR	Forward
 FEC_FPC	First person camera
 FEC_FPO	1st Person Weapons
 FEC_FPR	Controls For First Person
+FEC_FPS	1ST PERSON SENSITIVITY MULTIPLIER
 FEC_FRC	FREE CAM
 FEC_FWS	NUM /
 FEC_HAB	Hand brake

@@ -930,6 +930,7 @@ FEC_FOR	前进
 FEC_FPC	第一人称镜头
 FEC_FPO	第一人称武器
 FEC_FPR	第一人称操控
+FEC_FPS	第一人称灵敏度倍率
 FEC_FRC	载具内自由视角
 FEC_FWS	NUM /
 FEC_HAB	制动

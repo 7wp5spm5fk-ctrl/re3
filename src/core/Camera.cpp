@@ -78,6 +78,7 @@ bool bDidWeProcessAnyCinemaCam;
 static bool bSwitchedToObbeCam;
 float CCamera::m_fMouseAccelHorzntl;
 float CCamera::m_fMouseAccelVertical;
+float CCamera::m_f1stPersonMouseSensMult;
 float CCamera::m_f3rdPersonCHairMultX;
 float CCamera::m_f3rdPersonCHairMultY;
 
@@ -199,6 +200,7 @@ CCamera::Init(void)
 		m_fFLOATingFadeMusic = 0.0f;
 		m_fMouseAccelVertical = 0.002f;
 		m_fMouseAccelHorzntl = 0.001167f;
+		m_f1stPersonMouseSensMult = 0.6f;
 	}
 	if(FrontEndMenuManager.m_bWantToRestart)
 		m_fTimeToFadeMusic = 0.0f;

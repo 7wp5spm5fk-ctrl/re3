@@ -2253,8 +2253,8 @@ CCam::Process_Rocket(const CVector &CameraTarget, float, float, float)
 		LookUpDown = CPad::GetPad(0)->SniperModeLookUpDown();
 	}
 	if(UseMouse){
-		Beta += TheCamera.m_fMouseAccelHorzntl * LookLeftRight * FOV/80.0f;
-		Alpha += TheCamera.m_fMouseAccelVertical * LookUpDown * FOV/80.0f;
+		Beta += TheCamera.m_fMouseAccelHorzntl * TheCamera.m_f1stPersonMouseSensMult * LookLeftRight * FOV/80.0f;
+		Alpha += TheCamera.m_fMouseAccelVertical * TheCamera.m_f1stPersonMouseSensMult * LookUpDown * FOV/80.0f;
 	}else{
 		float xdir = LookLeftRight < 0.0f ? -1.0f : 1.0f;
 		float ydir = LookUpDown < 0.0f ? -1.0f : 1.0f;
@@ -2355,8 +2355,8 @@ CCam::Process_M16_1stPerson(const CVector &CameraTarget, float, float, float)
 		LookUpDown = CPad::GetPad(0)->SniperModeLookUpDown();
 	}
 	if(UseMouse){
-		Beta += TheCamera.m_fMouseAccelHorzntl * LookLeftRight * FOV/80.0f;
-		Alpha += TheCamera.m_fMouseAccelVertical * LookUpDown * FOV/80.0f;
+		Beta += TheCamera.m_fMouseAccelHorzntl * TheCamera.m_f1stPersonMouseSensMult * LookLeftRight * FOV/80.0f;
+		Alpha += TheCamera.m_fMouseAccelVertical * TheCamera.m_f1stPersonMouseSensMult * LookUpDown * FOV/80.0f;
 	}else if(Mode == MODE_HELICANNON_1STPERSON){
 		LookLeftRight /= 128.0f;
 		LookUpDown /= 128.0f;
@@ -2766,8 +2766,8 @@ CCam::Process_1rstPersonPedOnPC(const CVector&, float TargetOrientation, float, 
 			LookUpDown = CPad::GetPad(0)->LookAroundUpDown();
 		}
 		if(UseMouse){
-			Beta += TheCamera.m_fMouseAccelHorzntl * LookLeftRight * FOV/80.0f;
-			Alpha += TheCamera.m_fMouseAccelVertical * LookUpDown * FOV/80.0f;
+			Beta += TheCamera.m_fMouseAccelHorzntl * TheCamera.m_f1stPersonMouseSensMult * LookLeftRight * FOV/80.0f;
+			Alpha += TheCamera.m_fMouseAccelVertical * TheCamera.m_f1stPersonMouseSensMult * LookUpDown * FOV/80.0f;
 		}else{
 			float xdir = LookLeftRight < 0.0f ? -1.0f : 1.0f;
 			float ydir = LookUpDown < 0.0f ? -1.0f : 1.0f;
@@ -2905,8 +2905,8 @@ CCam::Process_Sniper(const CVector &CameraTarget, float TargetOrientation, float
 		LookUpDown = CPad::GetPad(0)->SniperModeLookUpDown();
 	}
 	if(UseMouse){
-		Beta += TheCamera.m_fMouseAccelHorzntl * LookLeftRight * FOV/80.0f;
-		Alpha += TheCamera.m_fMouseAccelVertical * LookUpDown * FOV/80.0f;
+		Beta += TheCamera.m_fMouseAccelHorzntl * TheCamera.m_f1stPersonMouseSensMult * LookLeftRight * FOV/80.0f;
+		Alpha += TheCamera.m_fMouseAccelVertical * TheCamera.m_f1stPersonMouseSensMult * LookUpDown * FOV/80.0f;
 	}else{
 		float xdir = LookLeftRight < 0.0f ? -1.0f : 1.0f;
 		float ydir = LookUpDown < 0.0f ? -1.0f : 1.0f;

@@ -771,6 +771,10 @@ CMenuManager::CheckSliderMovement(int value)
 		TheCamera.m_fMouseAccelVertical = TheCamera.m_fMouseAccelHorzntl;
 #endif
 		break;
+	case MENUACTION_1STPERSONSENS:
+		TheCamera.m_f1stPersonMouseSensMult += value * (1.0f - 0.0f) / MENUSLIDER_LOGICAL_BARS;
+		TheCamera.m_f1stPersonMouseSensMult = Clamp(TheCamera.m_f1stPersonMouseSensMult, 0.0f, 1.0f);
+		break;
 #ifdef CUSTOM_FRONTEND_OPTIONS
 	case MENUACTION_CFO_SLIDER:
 	{
@@ -1441,6 +1445,7 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 					int saveSlot = aScreens[m_nCurrScreen].m_aEntries[i].m_SaveSlot;
 					if (rightText || action == MENUACTION_DRAWDIST || action == MENUACTION_BRIGHTNESS || action == MENUACTION_MUSICVOLUME ||
 						action == MENUACTION_SFXVOLUME || action == MENUACTION_MP3VOLUMEBOOST || action == MENUACTION_MOUSESENS ||
+						action == MENUACTION_1STPERSONSENS ||
 						saveSlot >= SAVESLOT_1 && saveSlot <= SAVESLOT_9
 #ifdef CUSTOM_FRONTEND_OPTIONS
 						|| action == MENUACTION_CFO_SLIDER
@@ -1596,6 +1601,9 @@ CMenuManager::DrawStandardMenus(bool activeScreen)
 							break;
 						case MENUACTION_MOUSESENS:
 							ProcessSlider(TheCamera.m_fMouseAccelHorzntl * 200.0f, SLIDER_Y(170.0f), HOVEROPTION_INCREASE_MOUSESENS, HOVEROPTION_DECREASE_MOUSESENS, SCREEN_WIDTH, false);
+							break;
+						case MENUACTION_1STPERSONSENS:
+							ProcessSlider(TheCamera.m_f1stPersonMouseSensMult, SLIDER_Y(190.0f), HOVEROPTION_INCREASE_1STPERSONSENS, HOVEROPTION_DECREASE_1STPERSONSENS, SCREEN_WIDTH, false);
 							break;
 						case MENUACTION_MP3VOLUMEBOOST:
 							if(m_nPrefsAudio3DProviderIndex != NO_AUDIO_PROVIDER && DMAudio.IsMP3RadioChannelAvailable())
@@ -4349,7 +4357,7 @@ CMenuManager::UserInput(void)
 
 			int action = aScreens[m_nCurrScreen].m_aEntries[rowToCheck].m_Action;
 			if (action != MENUACTION_BRIGHTNESS && action != MENUACTION_DRAWDIST && action != MENUACTION_MUSICVOLUME
-				&& action != MENUACTION_SFXVOLUME && action != MENUACTION_MOUSESENS && action != MENUACTION_MP3VOLUMEBOOST
+				&& action != MENUACTION_SFXVOLUME && action != MENUACTION_MOUSESENS && action != MENUACTION_1STPERSONSENS && action != MENUACTION_MP3VOLUMEBOOST
 #ifdef CUSTOM_FRONTEND_OPTIONS
 				&& action != MENUACTION_CFO_SLIDER
 #endif
@@ -4433,6 +4441,7 @@ CMenuManager::UserInput(void)
 			case HOVEROPTION_INCREASE_MUSICVOLUME:
 			case HOVEROPTION_INCREASE_SFXVOLUME:
 			case HOVEROPTION_INCREASE_MOUSESENS:
+			case HOVEROPTION_INCREASE_1STPERSONSENS:
 #ifdef CUSTOM_FRONTEND_OPTIONS
 			case HOVEROPTION_INCREASE_CFO_SLIDER:
 #endif
@@ -4444,6 +4453,7 @@ CMenuManager::UserInput(void)
 			case HOVEROPTION_DECREASE_MUSICVOLUME:
 			case HOVEROPTION_DECREASE_SFXVOLUME:
 			case HOVEROPTION_DECREASE_MOUSESENS:
+			case HOVEROPTION_DECREASE_1STPERSONSENS:
 #ifdef CUSTOM_FRONTEND_OPTIONS
 			case HOVEROPTION_DECREASE_CFO_SLIDER:
 #endif
@@ -4486,7 +4496,7 @@ CMenuManager::UserInput(void)
 				DMAudio.PlayFrontEndSound(SOUND_FRONTEND_ENTER_OR_ADJUST, 0);
 			else if (option == MENUACTION_SFXVOLUME)
 				DMAudio.PlayFrontEndSound(SOUND_FRONTEND_AUDIO_TEST, 0);
-			else if (option == MENUACTION_DRAWDIST || option == MENUACTION_MOUSESENS)
+			else if (option == MENUACTION_DRAWDIST || option == MENUACTION_MOUSESENS || option == MENUACTION_1STPERSONSENS)
 				DMAudio.PlayFrontEndSound(SOUND_FRONTEND_ENTER_OR_ADJUST, 0);
 
 		}
@@ -4517,7 +4527,7 @@ CMenuManager::UserInput(void)
 			if (curAction == MENUACTION_BRIGHTNESS || curAction == MENUACTION_MUSICVOLUME ||
 				curAction == MENUACTION_SFXVOLUME || curAction == MENUACTION_RADIO ||
 				curAction == MENUACTION_DRAWDIST || curAction == MENUACTION_MOUSESENS ||
-				curAction == MENUACTION_MP3VOLUMEBOOST
+				curAction == MENUACTION_1STPERSONSENS || curAction == MENUACTION_MP3VOLUMEBOOST
 #ifdef CUSTOM_FRONTEND_OPTIONS
 				|| curAction == MENUACTION_CFO_SLIDER
 #endif
@@ -4532,7 +4542,7 @@ CMenuManager::UserInput(void)
 			if (curAction == MENUACTION_BRIGHTNESS || curAction == MENUACTION_MUSICVOLUME ||
 				curAction == MENUACTION_SFXVOLUME || curAction == MENUACTION_RADIO ||
 				curAction == MENUACTION_DRAWDIST || curAction == MENUACTION_MOUSESENS ||
-				curAction == MENUACTION_MP3VOLUMEBOOST
+				curAction == MENUACTION_1STPERSONSENS || curAction == MENUACTION_MP3VOLUMEBOOST
 #ifdef CUSTOM_FRONTEND_OPTIONS
 				|| curAction == MENUACTION_CFO_SLIDER
 #endif
@@ -4578,6 +4588,7 @@ CMenuManager::UserInput(void)
 			&& aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action != MENUACTION_RESTOREDEF
 			&& aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action != MENUACTION_DRAWDIST
 			&& aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action != MENUACTION_MOUSESENS
+			&& aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action != MENUACTION_1STPERSONSENS
 			&& aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action != MENUACTION_MP3VOLUMEBOOST) {
 			DMAudio.PlayFrontEndSound(SOUND_FRONTEND_ENTER_OR_ADJUST, 0);
 		}

@@ -32,6 +32,7 @@ Compared to other branches, the reVC branch has made more changes:
    - Save game in pause menu
    - Save game after mission complete in standalone slot
    - Press `F10` to turn on/off framerate limiter
+   - Reduce the sensitivity in first person view. The multiplier can be adjusted in settings.
 - Some improvments
    - Unified vertical and horizontal sensitivity
 
