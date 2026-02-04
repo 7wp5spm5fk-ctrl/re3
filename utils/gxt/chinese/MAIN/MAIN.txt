@@ -1057,10 +1057,10 @@ FEC_SZO	狙击枪镜头缩小
 FEC_TAB	TAB
 FEC_TAR	瞄准
 FEC_TDO	关闭调试镜头
-FEC_TFD	炮塔向下
-FEC_TFL	视角往左+炮塔向左
-FEC_TFR	视角往左+炮塔向右
-FEC_TFU	炮塔向上
+FEC_TFD	向下
+FEC_TFL	向左
+FEC_TFR	向右
+FEC_TFU	向上
 FEC_TGD	Toggle Pad Game/Debug
 FEC_TLF	向左切换目标
 FEC_TRG	向右切换目标

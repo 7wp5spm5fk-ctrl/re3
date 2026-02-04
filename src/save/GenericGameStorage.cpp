@@ -67,7 +67,7 @@ static bool PerformAutoSaveNow()
 
 	if (res == 0) {
 		debug("PerformAutoSaveNow: successfully saved to auto-save slot");
-		CHud::SetHelpMessage(TheText.Get("AUTOSAV"), 5000, 0);
+		CHud::SetHelpMessage(TheText.Get("AUTOSAV"), 3000, 0);
 		
 		return true;
 	}
