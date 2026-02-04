@@ -40,6 +40,7 @@
 #include "Zones.h"
 #include "Timecycle.h"
 #include "Fluff.h"
+#include "Hud.h"
 
 #define BLOCK_COUNT 22
 #define SIZE_OF_SIMPLEVARS 0xE4
@@ -51,7 +52,6 @@ int8 IsQuickSave;
 const int AUTO_SAVE_SLOT = 8;  // 自动保存槽位（第9个槽位，索引8）
 const int PAUSE_SAVE_SLOT = 9;  // 暂停快速保存槽位（第10个槽位，索引9）
 bool bNeedDelayedAutoSave = false;  // 是否待保存
-
 static bool PerformAutoSaveNow()
 {
 	// 禁止在任务脚本仍在运行时保存
@@ -67,6 +67,8 @@ static bool PerformAutoSaveNow()
 
 	if (res == 0) {
 		debug("PerformAutoSaveNow: successfully saved to auto-save slot");
+		CHud::SetHelpMessage(TheText.Get("AUTOSAV"), 5000, 0);
+		
 		return true;
 	}
 	debug("PerformAutoSaveNow: save failed with error %d", res);

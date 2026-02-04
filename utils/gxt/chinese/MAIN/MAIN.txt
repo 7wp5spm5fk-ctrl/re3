@@ -62,6 +62,7 @@ ASS_1	强闯枭巢
 ATUTOR	按~h~~k~~TOGGLE_SUBMISSIONS~~w~开始救护任务。
 ATUTOR3	按~h~~k~~TOGGLE_SUBMISSIONS~~w~开始救护任务。
 AUG	Aug
+AUTOSAV 游戏已自动保存
 AVERY	AVERY MISSIONS
 A_PORT	埃斯科瓦尔国际机场
 A_TIME	+~1~秒
@@ -2393,7 +2394,7 @@ ST_WHED	后轮独轮行驶最长距离（米）
 ST_WHEE	后轮独轮行驶最长时间（秒）
 ST_WSTR	最不喜欢的电台
 SUNSHIN	阳光车行
-S_PROMP	不在任务中时，你可以走进任意一个~h~磁带~w~保存游戏。
+S_PROMP	不在任务中时，你可以走进任意一个~h~磁带~w~或在暂停菜单保存游戏。
 T4X4_1	PCJ车舞
 T4X4_3	'GRIPPED!'
 T4X4_F	~r~你失败了！这玩意对你来说太难了么？
