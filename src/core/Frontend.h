@@ -655,6 +655,7 @@ public:
 	int32 m_ScrollRadioBy;
 	int32 m_nCurrScreen;
 	int32 m_nPrevScreen;
+	int32 m_nPrevScreenBeforeSave;
 	int32 m_nCurrSaveSlot;
 	uint32 m_LastScreenSwitch;
 	int32 m_nMenuFadeAlpha;

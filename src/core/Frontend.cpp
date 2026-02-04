@@ -454,6 +454,8 @@ CMenuManager::SwitchToNewScreen(int8 screen)
 		m_nCurrOption = 0;
 		m_nCurrScreen = screen;
 	}
+	if (m_nCurrScreen == MENUPAGE_CHOOSE_SAVE_SLOT)
+		m_nPrevScreenBeforeSave = m_nPrevScreen;
 	SETUP_SCROLLING(m_nCurrScreen)
 	
 	if (hasNativeList(m_nPrevScreen))
@@ -524,6 +526,7 @@ CMenuManager::CMenuManager()
 	m_nMouseOldPosY = m_nMousePosY;
 	m_bShowMouse = true;
 	m_nHoverOption = HOVEROPTION_NOT_HOVERING;
+	m_nPrevScreenBeforeSave = MENUPAGE_NONE;
 
 	DMAudio.SetMP3BoostVolume(m_PrefsMP3BoostVolume);
 	m_bMenuActive = false;
@@ -4837,7 +4840,7 @@ CMenuManager::ProcessUserInput(uint8 goDown, uint8 goUp, uint8 optionSelected, u
 				int saveSlot = aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_SaveSlot;
 
 				if (saveSlot >= 2 && saveSlot <= 9) {
-					if (CTheScripts::IsPlayerOnAMission()) {
+					if (m_nPrevScreenBeforeSave == MENUPAGE_PAUSE_MENU && CTheScripts::IsPlayerOnAMission()) {
 						DMAudio.PlayFrontEndSound(SOUND_FRONTEND_FAIL, 0);
 						SetHelperText(27);
 						break;
