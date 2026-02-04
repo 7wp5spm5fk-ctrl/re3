@@ -37,6 +37,7 @@
 #include "Heli.h"
 #include "Hud.h"
 #include "IniFile.h"
+#include "ControllerConfig.h"
 #include "Lights.h"
 #include "MBlur.h"
 #include "Messages.h"
@@ -246,7 +247,7 @@ CGame::InitialiseRenderWare(void)
 
 #ifdef LIBRW
 #ifdef PS2_MATFX
-	//¸Ä
+	//ï¿½ï¿½
 	//rw::MatFX::envMapApplyLight = true;
 	//rw::MatFX::envMapUseMatColor = true;
 	//rw::MatFX::envMapFlipU = true;
@@ -256,7 +257,7 @@ CGame::InitialiseRenderWare(void)
 	rw::MatFX::envMapFlipU = false;
 #endif
 	rw::RGBA envcol = { 64, 64, 64, 255 };
-	//¸Ä
+	//ï¿½ï¿½
 	//rw::MatFX::envMapColor = envcol;
 #else
 #ifdef PS2_MATFX
@@ -847,6 +848,14 @@ void CGame::InitialiseWhenRestarting(void)
 void CGame::Process(void) 
 {
 	CPad::UpdatePads();
+#ifdef GTA_PC
+	if (!FrontEndMenuManager.m_bMenuActive && !CTimer::GetIsCodePaused() && !CCutsceneMgr::IsCutsceneProcessing()) {
+		if (ControlsManager.GetIsKeyboardKeyJustDown(rsF10)) {
+			FrontEndMenuManager.m_PrefsFrameLimiter = !FrontEndMenuManager.m_PrefsFrameLimiter;
+			CHud::SetHelpMessage(TheText.Get(FrontEndMenuManager.m_PrefsFrameLimiter ? "FLIM_ON" : "FLIM_OF"), true); // "Frame Limiter On"/"Frame Limiter Off"
+		}
+	}
+#endif
 #ifdef USE_CUSTOM_ALLOCATOR
 	ProcessTidyUpMemory();
 #endif

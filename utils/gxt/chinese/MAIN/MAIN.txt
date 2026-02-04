@@ -1309,6 +1309,8 @@ FIRETRK	Firetruck
 FIRE_M	救火任务
 FIRST	~b~第一名
 FLATBED	Flatbed
+FLIM_OF	关闭帧数限制
+FLIM_ON	启用帧数限制
 FOURTH	~b~垫底
 FREEWAY	Freeway
 FST_LFR	最讨厌的电台

@@ -62,7 +62,7 @@ ASS_1	Rub Out
 ATUTOR	Press the ~h~~k~~TOGGLE_SUBMISSIONS~ ~w~button to toggle Paramedic missions on or off.
 ATUTOR3	Press the ~h~~k~~TOGGLE_SUBMISSIONS~ button~w~ to toggle Paramedic missions on or off.
 AUG	Aug
-AUTOSAV Game has been saved
+AUTOSAV	Game has been saved
 AVERY	AVERY MISSIONS
 A_PORT	Escobar International
 A_TIME	+~1~ seconds
@@ -1309,6 +1309,8 @@ FIRETRK	Firetruck
 FIRE_M	'FIREFIGHTER'
 FIRST	~b~1st
 FLATBED	Flatbed
+FLIM_OF	Turn off framerate limiter
+FLIM_ON	Turn on framerate limiter
 FOURTH	~b~4th
 FREEWAY	Freeway
 FST_LFR	Least Favorite Radio Station
