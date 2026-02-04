@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "PCSave.h"
 
-#define SLOT_COUNT (10)  // 8个手动槽位 + 1个自动保存槽位 + 1个暂停快速保存槽位
+#define SLOT_COUNT (9)
 
 void InitRadioStationPositionList();
 int32 GetSavedRadioStationPosition(int32 station);
