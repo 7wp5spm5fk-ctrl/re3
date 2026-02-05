@@ -3,12 +3,12 @@
     {
       "MIMode": "gdb",
       "args": [],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/local_gamefiles",
       "environment": [],
       "externalConsole": false,
       "name": "(gdb) Launch (Linux Debug)",
       "preLaunchTask": "Compile (Debug Linux x64)",
-      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Debug/re3",
+      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Debug/reVC",
       "request": "launch",
       "setupCommands": [
         {
@@ -24,12 +24,64 @@
     {
       "MIMode": "gdb",
       "args": [],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/local_gamefiles",
       "environment": [],
       "externalConsole": false,
       "name": "(gdb) Launch (Linux Release)",
       "preLaunchTask": "Compile (Release Linux x64)",
-      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Release/re3",
+      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Release/reVC",
+      "request": "launch",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "ignoreFailures": true,
+          "text": "-enable-pretty-printing"
+        }
+      ],
+      "stopAtEntry": false,
+      "targetArchitecture": "x64",
+      "type": "cppdbg"
+    },
+    {
+      "MIMode": "gdb",
+      "args": [],
+      "cwd": "${workspaceFolder}/local_gamefiles",
+      "environment": [
+        {
+          "name": "XDG_DATA_DIRS",
+          "value": "${workspaceFolder}/result/share:${env:XDG_DATA_DIRS}"
+        }
+      ],
+      "externalConsole": false,
+      "name": "(gdb) Launch (Linux Nix Debug)",
+      "preLaunchTask": "Nix Build (Debug)",
+      "program": "${workspaceFolder}/result/bin/reVC",
+      "request": "launch",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "ignoreFailures": true,
+          "text": "-enable-pretty-printing"
+        }
+      ],
+      "stopAtEntry": false,
+      "targetArchitecture": "x64",
+      "type": "cppdbg"
+    },
+    {
+      "MIMode": "gdb",
+      "args": [],
+      "cwd": "${workspaceFolder}/local_gamefiles",
+      "environment": [
+        {
+          "name": "XDG_DATA_DIRS",
+          "value": "${workspaceFolder}/result/share:${env:XDG_DATA_DIRS}"
+        }
+      ],
+      "externalConsole": false,
+      "name": "(gdb) Launch (Linux Nix Release)",
+      "preLaunchTask": "Nix Build (Release)",
+      "program": "${workspaceFolder}/result/bin/reVC",
       "request": "launch",
       "setupCommands": [
         {
@@ -45,12 +97,12 @@
     {
       "MIMode": "lldb",
       "args": [],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/local_gamefiles",
       "environment": [],
       "externalConsole": false,
       "name": "(lldb) Launch (macOS Debug)",
       "preLaunchTask": "Compile (Debug macOS x64)",
-      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Debug/re3.app",
+      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Debug/reVC.app",
       "request": "launch",
       "setupCommands": [
         {
@@ -66,12 +118,12 @@
     {
       "MIMode": "lldb",
       "args": [],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/local_gamefiles",
       "environment": [],
       "externalConsole": false,
       "name": "(lldb) Launch (macOS Release)",
       "preLaunchTask": "Compile (Release macOS x64)",
-      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Release/re3.app",
+      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Release/reVC.app",
       "request": "launch",
       "setupCommands": [
         {

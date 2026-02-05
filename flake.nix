@@ -35,7 +35,7 @@
 
       # 构建re3（miami分支）的函数
       buildRe3 =
-        pkgs:
+        pkgs: buildType:
         pkgs.stdenv.mkDerivation rec {
           pname = "reVC";
           version = "1.0.0";
@@ -100,7 +100,7 @@
             
             cmake -S . -B build \
               -G "Unix Makefiles" \
-              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_BUILD_TYPE=${buildType} \
               -DREVC_VENDORED_LIBRW=ON \
               -DREVC_AUDIO=OAL \
               -DLIBRW_PLATFORM=GL3 \
@@ -110,6 +110,8 @@
             cd build
             make -j$NIX_BUILD_CORES
           '';
+
+          dontStrip = buildType == "Debug";
 
           program = "reVC";
           name = "Grand Theft Auto: Vice City (reVC)";
@@ -153,8 +155,9 @@
       mkPackages = system:
         let pkgs = mkPkgs system;
         in {
-          reVC = buildRe3 pkgs;
-          default = buildRe3 pkgs;
+          reVC = buildRe3 pkgs "Release";
+          reVC-debug = buildRe3 pkgs "Debug";
+          default = buildRe3 pkgs "Release";
         };
 
       mkDevShell = system:
@@ -163,6 +166,7 @@
           buildInputs = [
             pkgs.cmake
             pkgs.gcc
+            pkgs.gdb
             pkgs.gnumake
             pkgs.git
             pkgs.pkg-config

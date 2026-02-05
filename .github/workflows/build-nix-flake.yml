@@ -61,6 +61,10 @@ jobs:
     - name: Build reVC
       run: |
         nix build ".#packages.${{ matrix.system }}.reVC" -L
+
+    - name: Build reVC (Debug)
+      run: |
+        nix build ".#packages.${{ matrix.system }}.reVC-debug" -L
     
     - name: Check flake
       run: |
@@ -71,10 +75,23 @@ jobs:
         mkdir -p package
         cp result/bin/reVC package/
         cp -r result/share/reVC/* package/
+
+    - name: Create debug package
+      run: |
+        mkdir -p package-debug
+        cp result/bin/reVC package-debug/
+        cp -r result/share/reVC/* package-debug/
     
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: reVC-${{ matrix.system }}
         path: package/
+        if-no-files-found: error
+
+    - name: Upload debug artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: reVC-debug-${{ matrix.system }}
+        path: package-debug/
         if-no-files-found: error
