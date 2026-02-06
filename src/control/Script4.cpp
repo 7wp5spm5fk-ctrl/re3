@@ -10,6 +10,8 @@
 #include "CivilianPed.h"
 #include "Cranes.h"
 #include "DMAudio.h"
+#include "AudioManager.h"
+#include "sampman.h"
 #include "Darkel.h"
 #include "Explosion.h"
 #include "Fire.h"
@@ -2050,7 +2052,23 @@ int8 CRunningScript::ProcessCommands900To999(int32 command)
 	}
 	case COMMAND_PLAY_MISSION_AUDIO:
 		CollectParameters(&m_nIp, 1);
-		DMAudio.PlayLoadedMissionAudio(ScriptParams[0] - 1);
+		{
+			int32 slot = ScriptParams[0] - 1;
+			if (slot >= 0 && slot < MISSION_AUDIO_SLOTS && CPhoneInfo::IsScriptMobileHangUpActive()) {
+				if (AudioManager.m_bIsMissionAudioPhoneCall[slot] ||
+					(AudioManager.m_nMissionAudioSampleIndex[slot] >= STREAMED_SOUND_MISSION_MOB_01A &&
+						AudioManager.m_nMissionAudioSampleIndex[slot] <= STREAMED_SOUND_MISSION_MOB_99A)) {
+					AudioManager.m_nMissionAudioPlayStatus[slot] = PLAY_STATUS_FINISHED;
+					AudioManager.m_bIsMissionAudioPlaying[slot] = FALSE;
+					AudioManager.m_bIsMissionAudioAllowedToPlay[slot] = FALSE;
+					AudioManager.m_bIsMissionAudioPhoneCall[slot] = FALSE;
+					AudioManager.m_nMissionAudioFramesToPlay[slot] = 0;
+					SampleManager.StopStreamedFile(slot + 1);
+					return 0;
+				}
+			}
+			DMAudio.PlayLoadedMissionAudio(slot);
+		}
 		return 0;
 	case COMMAND_HAS_MISSION_AUDIO_FINISHED:
 	{

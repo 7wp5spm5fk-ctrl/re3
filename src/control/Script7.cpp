@@ -14,6 +14,7 @@
 #include "Glass.h"
 #include "Fluff.h"
 #include "Hud.h"
+#include "Phones.h"
 #include "MBlur.h"
 #include "Pad.h"
 #include "Pickups.h"
@@ -884,9 +885,13 @@ int8 CRunningScript::ProcessCommands1300To1399(int32 command)
 	{
 		CollectParameters(&m_nIp, 2);
 		CPed* pPed = CPools::GetPedPool()->GetAt(ScriptParams[0]);
-		if (ScriptParams[1])
+		if (!pPed)
+			return 0;
+		if (ScriptParams[1]) {
+			if (pPed && pPed->IsPlayer() && CPhoneInfo::IsScriptMobileHangUpActive())
+				return 0;
 			pPed->SetAnswerMobile();
-		else
+		} else
 			pPed->ClearAnswerMobile();
 		return 0;
 	}

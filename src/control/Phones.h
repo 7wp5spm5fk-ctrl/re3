@@ -38,6 +38,8 @@ class CPhoneInfo {
 public:
 	static bool bDisplayingPhoneMessage;
 	static uint32 PhoneEnableControlsTimer;
+	static uint32 PhoneHangUpDisableTimer;
+	static uint32 ScriptMobileHangUpTimer;
 	static CPhone *pPhoneDisplayingMessages;
 	static bool bPickingUpPhone;
 	static CPed *pCallBackPed;
@@ -58,6 +60,8 @@ public:
 	void SetPhoneMessage_JustOnce(int phoneId, wchar *msg1, wchar *msg2, wchar *msg3, wchar *msg4, wchar *msg5, wchar *msg6);
 	void SetPhoneMessage_Repeatedly(int phoneId, wchar *msg1, wchar *msg2, wchar *msg3, wchar *msg4, wchar *msg5, wchar *msg6);
 	int GrabPhone(float, float);
+	void StartHangUp(CPed *ped);
+	static bool IsScriptMobileHangUpActive(void);
 	void Initialise(void);
 	void Shutdown(void);
 	void Update(void);
