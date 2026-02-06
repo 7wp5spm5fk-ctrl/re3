@@ -5139,12 +5139,15 @@ CCam::Process_FollowCar_SA(const CVector& CameraTarget, float TargetOrientation,
 		} else
 			alphaCorrected = true;
 	}
+
+	bool isFollowMode = nextDirectionIsForward && !mouseChangesBeta && Abs(stickX) <= 2.0f && Abs(stickY) <= 2.0f;
+	float followRotationSpeedMult = isFollowMode ? 6.0f : 1.0f;
 	float alphaSpeedFromStickY = yMovement * CARCAM_SET[camSetArrPos][12];
 	float betaSpeedFromStickX = xMovement * CARCAM_SET[camSetArrPos][12];
 
-	float newAngleSpeedMaxBlendAmount = CARCAM_SET[camSetArrPos][9];
+	float newAngleSpeedMaxBlendAmount = CARCAM_SET[camSetArrPos][9] * followRotationSpeedMult;
 	float angleChangeStep = Pow(CARCAM_SET[camSetArrPos][8], CTimer::GetTimeStep());
-	float targetBetaWithStickBlendAmount = betaSpeedFromStickX + (targetBeta - Beta) / Max(CTimer::GetTimeStep(), 1.0f);
+	float targetBetaWithStickBlendAmount = betaSpeedFromStickX + (targetBeta - Beta) * followRotationSpeedMult / Max(CTimer::GetTimeStep(), 1.0f);
 
 	if (targetBetaWithStickBlendAmount < -newAngleSpeedMaxBlendAmount)
 		targetBetaWithStickBlendAmount = -newAngleSpeedMaxBlendAmount;
