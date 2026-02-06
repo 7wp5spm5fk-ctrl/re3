@@ -35,6 +35,7 @@ Compared to other branches, the reVC branch has made more changes:
    - Reduce the sensitivity in first person view. The multiplier can be adjusted in settings.
 - Some improvments
    - Unified vertical and horizontal sensitivity
+   - Increase follow speed of free cam
 
 > Can't save game in mission or vehicle. Auto save will start after Tommy leave the vehicle.
 
