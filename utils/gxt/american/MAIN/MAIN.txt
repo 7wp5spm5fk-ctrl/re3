@@ -5,7 +5,7 @@ AMBUL_M	'PARAMEDIC'
 AMMU	Go inside Ammu-Nation to buy a weapon.
 AMMUHLP	If you need any weapons visit ~h~Ammu-Nation~w~. Follow the ~h~Gun blip~w~ on the radar.
 ANGEL	Angel
-ANSWER	Press the ~h~~k~~PED_ANSWER_PHONE~~w~ to answer your cell phone.
+ANSWER	Press the ~h~~k~~PED_ANSWER_PHONE~~w~ to answer your cell phone, press again to skip it.
 APACHE	Hunter delivered to helipad in Ocean Beach.
 APR	Apr
 ARMOUR	Body Armor

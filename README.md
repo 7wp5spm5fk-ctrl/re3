@@ -33,6 +33,7 @@ Compared to other branches, the reVC branch has made more changes:
    - Save game after mission complete in standalone slot
    - Press `F10` to turn on/off framerate limiter
    - Reduce the sensitivity in first person view. The multiplier can be adjusted in settings.
+   - After picking up the phone. press pick-up key again to skip it
 - Some improvments
    - Unified vertical and horizontal sensitivity
    - Increase follow speed of free cam

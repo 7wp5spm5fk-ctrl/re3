@@ -5,7 +5,7 @@ AMBUL_M	救护任务
 AMMU	进入武装国度购买武器。
 AMMUHLP	~h~武装国度~w~是购买武器的不二场所。 它在雷达上以~h~枪械标志~w~显示。
 ANGEL	Angel
-ANSWER	按~h~~k~~PED_ANSWER_PHONE~~w~接听电话。
+ANSWER	按~h~~k~~PED_ANSWER_PHONE~~w~接听电话，再次按下跳过电话。
 APACHE	武装直升机现已送达大洋海滩的停机坪。
 APR	Apr
 ARMOUR	防弹衣

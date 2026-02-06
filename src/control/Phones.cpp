@@ -56,9 +56,11 @@ CPhoneInfo::Update(void)
 	if (player == nil)
 		return;
 	CPlayerInfo *playerInfo = &CWorld::Players[CWorld::PlayerInFocus];
+	CPad *pad = CPad::GetPad(0);
 	bool isAnsweringMobile = player->m_nPedState == PED_ANSWER_MOBILE;
-	bool hangUpPressed = isAnsweringMobile && player->IsPedInControl() && !CPad::GetPad(0)->ArePlayerControlsDisabled() &&
-		CPad::GetPad(0)->GetCharJustDown(' ');
+	bool answerPhonePressed = pad && pad->GetLeftShoulder1() && !pad->OldState.LeftShoulder1;
+	bool hangUpPressed = isAnsweringMobile && player->IsPedInControl() && pad && !pad->ArePlayerControlsDisabled() &&
+		answerPhonePressed;
 	if (hangUpPressed) {
 		playerInfo->MakePlayerSafe(false);
 		TheCamera.SetWideScreenOff();
