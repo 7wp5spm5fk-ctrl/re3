@@ -4,6 +4,8 @@
 
 <img src="../res/images/logo.svg" width="128px"></img>
 
+> 本分支修改了游戏脚本文件，与原版存档不兼容！
+
 ## 简介
 
 本仓库在 re3 原仓库上做出以下改动：

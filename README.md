@@ -4,6 +4,8 @@
 
 <img src="res/images/logo.svg" width="128px"></img>
 
+> This branch modified the script of game. Can't load original save!
+
 ## Introduction
 
 This repository makes the following changes to the original re3 repository:
