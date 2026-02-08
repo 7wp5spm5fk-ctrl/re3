@@ -113,9 +113,9 @@
 
           dontStrip = buildType == "Debug";
 
-          program = "reVC";
-          name = "Grand Theft Auto: Vice City (reVC)";
-          re3-pwd = "~/.reVC";
+          program = "reVC-Improved";
+          name = "Grand Theft Auto: Vice City (reVC Improved)";
+          re3-pwd = "~/.reVC-Improved";
 
           installPhase = ''
             mkdir -p $out/bin $out/share/applications $out/share/icons/hicolor/256x256/apps $out/share/${program}
@@ -155,8 +155,8 @@
       mkPackages = system:
         let pkgs = mkPkgs system;
         in {
-          reVC = buildRe3 pkgs "Release";
-          reVC-debug = buildRe3 pkgs "Debug";
+          reVC-Improved = buildRe3 pkgs "Release";
+          reVC-Improved-debug = buildRe3 pkgs "Debug";
           default = buildRe3 pkgs "Release";
         };
 
