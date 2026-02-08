@@ -1,10 +1,8 @@
-# reVC
+# reVC-Improved
 
 **Languages:** [English](README.md) | [中文 (Chinese)]
 
 <img src="../res/images/logo.svg" width="128px"></img>
-
-> 本分支修改了游戏脚本文件，与原版存档不兼容！
 
 ## 简介
 
@@ -41,6 +39,8 @@
    - 增加载具内自由视角跟随速度
 
 > 在任务中或在载具中无法保存，自动保存会等待汤米离开载具后执行。
+
+> 相比 reVC 分支，reVC-Improved 改动了游戏脚本文件 `main.scm`，不兼容原版存档。
 
 修改游戏的过程中使用到了以下工具/代码，在此致谢：
 

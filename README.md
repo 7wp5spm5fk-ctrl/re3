@@ -1,10 +1,8 @@
-# reVC
+# reVC-Improved
 
 **Languages:** [English] | [中文 (Chinese)](docs/README.zh_CN.md)
 
 <img src="res/images/logo.svg" width="128px"></img>
-
-> This branch modified the script of game. Can't load original save!
 
 ## Introduction
 
@@ -41,6 +39,8 @@ Compared to other branches, the reVC branch has made more changes:
    - Increase follow speed of free cam
 
 > Can't save game in mission or vehicle. Auto save will start after Tommy leave the vehicle.
+
+> This branch modified the script of game. Can't load original save!
 
 The following tools/code were used during game modification, thanks to:
 
