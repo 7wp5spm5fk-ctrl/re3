@@ -37,7 +37,7 @@
       buildRe3 =
         pkgs: buildType:
         pkgs.stdenv.mkDerivation rec {
-          pname = "reVC";
+          pname = "reVC-Improved";
           version = "1.0.0";
 
           # 使用本地源，排除build目录和.git
@@ -120,7 +120,7 @@
           installPhase = ''
             mkdir -p $out/bin $out/share/applications $out/share/icons/hicolor/256x256/apps $out/share/${program}
 
-            cp "src/${program}" $out/bin/${program}
+            cp "src/reVC" $out/bin/${program}
             chmod +x $out/bin/${program}
 
             # Copy gamefiles to share directory
