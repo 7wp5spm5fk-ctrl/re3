@@ -60,11 +60,11 @@ jobs:
     
     - name: Build reVC
       run: |
-        nix build ".#packages.${{ matrix.system }}.reVC" -L
+        nix build ".#packages.${{ matrix.system }}.reVC-Improved" -L
 
     - name: Build reVC (Debug)
       run: |
-        nix build ".#packages.${{ matrix.system }}.reVC-debug" -L
+        nix build ".#packages.${{ matrix.system }}.reVC-Improved-debug" -L
     
     - name: Check flake
       run: |
