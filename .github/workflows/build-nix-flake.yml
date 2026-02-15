@@ -73,14 +73,14 @@ jobs:
     - name: Create release package
       run: |
         mkdir -p package
-        cp result/bin/reVC package/
-        cp -r result/share/reVC/* package/
+        cp result/bin/reVC-Improved package/
+        cp -r result/share/reVC-Improved/* package/
 
     - name: Create debug package
       run: |
         mkdir -p package-debug
-        cp result/bin/reVC package-debug/
-        cp -r result/share/reVC/* package-debug/
+        cp result/bin/reVC-Improved-debug package-debug/
+        cp -r result/share/reVC-Improved-debug/* package-debug/
     
     - name: Upload artifact
       uses: actions/upload-artifact@v4
