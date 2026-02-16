@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(EXECUTABLE reVC)
+set(EXECUTABLE reVC-Improved)
 set(PROJECT REVC)
 
 project(${EXECUTABLE} C CXX)

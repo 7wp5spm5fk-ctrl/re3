@@ -8,7 +8,7 @@
       "externalConsole": false,
       "name": "(gdb) Launch (Linux Debug)",
       "preLaunchTask": "Compile (Debug Linux x64)",
-      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Debug/reVC",
+      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Debug/reVC-Improved",
       "request": "launch",
       "setupCommands": [
         {
@@ -29,7 +29,7 @@
       "externalConsole": false,
       "name": "(gdb) Launch (Linux Release)",
       "preLaunchTask": "Compile (Release Linux x64)",
-      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Release/reVC",
+      "program": "${workspaceFolder}/bin/linux-amd64-librw_gl3_glfw-oal/Release/reVC-Improved",
       "request": "launch",
       "setupCommands": [
         {
@@ -55,7 +55,7 @@
       "externalConsole": false,
       "name": "(gdb) Launch (Linux Nix Debug)",
       "preLaunchTask": "Nix Build (Debug)",
-      "program": "${workspaceFolder}/result/bin/reVC",
+      "program": "${workspaceFolder}/result/bin/reVC-Improved",
       "request": "launch",
       "setupCommands": [
         {
@@ -81,7 +81,7 @@
       "externalConsole": false,
       "name": "(gdb) Launch (Linux Nix Release)",
       "preLaunchTask": "Nix Build (Release)",
-      "program": "${workspaceFolder}/result/bin/reVC",
+      "program": "${workspaceFolder}/result/bin/reVC-Improved",
       "request": "launch",
       "setupCommands": [
         {
@@ -102,7 +102,7 @@
       "externalConsole": false,
       "name": "(lldb) Launch (macOS Debug)",
       "preLaunchTask": "Compile (Debug macOS x64)",
-      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Debug/reVC.app",
+      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Debug/reVC-Improved.app",
       "request": "launch",
       "setupCommands": [
         {
@@ -123,7 +123,7 @@
       "externalConsole": false,
       "name": "(lldb) Launch (macOS Release)",
       "preLaunchTask": "Compile (Release macOS x64)",
-      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Release/reVC.app",
+      "program": "${workspaceFolder}/bin/macosx-amd64-librw_gl3_glfw-oal/Release/reVC-Improved.app",
       "request": "launch",
       "setupCommands": [
         {

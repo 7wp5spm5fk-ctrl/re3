@@ -91,14 +91,14 @@
       "type": "shell"
     },
     {
-      "args": ["build", ".#reVC-debug"],
+      "args": ["build", ".#reVC-Improved-debug"],
       "command": "nix",
       "label": "Nix Build (Debug)",
       "problemMatcher": "$gcc",
       "type": "shell"
     },
     {
-      "args": ["build", ".#reVC"],
+      "args": ["build", ".#reVC-Improved"],
       "command": "nix",
       "label": "Nix Build (Release)",
       "problemMatcher": "$gcc",

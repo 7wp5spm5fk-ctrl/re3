@@ -120,7 +120,7 @@
           installPhase = ''
             mkdir -p $out/bin $out/share/applications $out/share/icons/hicolor/256x256/apps $out/share/${program}
 
-            cp "src/reVC" $out/bin/${program}
+            cp "src/reVC-Improved" $out/bin/${program}
             chmod +x $out/bin/${program}
 
             # Copy gamefiles to share directory
