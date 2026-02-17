@@ -22,14 +22,30 @@
   };
 
   outputs =
-    { self, nixpkgs, librw, ogg, opus, opusfile }:
+    {
+      self,
+      nixpkgs,
+      librw,
+      ogg,
+      opus,
+      opusfile,
+    }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      
-      forAllSystems = f: builtins.listToAttrs (map (system: {
-        name = system;
-        value = f system;
-      }) supportedSystems);
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      forAllSystems =
+        f:
+        builtins.listToAttrs (
+          map (system: {
+            name = system;
+            value = f system;
+          }) supportedSystems
+        );
 
       mkPkgs = system: import nixpkgs { inherit system; };
 
@@ -42,16 +58,19 @@
 
           # 使用本地源，排除build目录和.git
           src = pkgs.lib.cleanSourceWith {
-            filter = name: type:
-              let baseName = baseNameOf (toString name);
-              in !(
-                baseName == "build" ||
-                baseName == ".git" ||
-                baseName == ".gitignore" ||
-                baseName == "result" ||
-                baseName == ".vscode" ||
-                baseName == ".idea" ||
-                baseName == "vendor" # 排除本地vendor目录，我们将从inputs提供
+            filter =
+              name: type:
+              let
+                baseName = baseNameOf (toString name);
+              in
+              !(
+                baseName == "build"
+                || baseName == ".git"
+                || baseName == ".gitignore"
+                || baseName == "result"
+                || baseName == ".vscode"
+                || baseName == ".idea"
+                || baseName == "vendor" # 排除本地vendor目录，我们将从inputs提供
               );
             src = ./.;
           };
@@ -63,7 +82,7 @@
             cp -r ${ogg} $sourceRoot/vendor/ogg
             cp -r ${opus} $sourceRoot/vendor/opus
             cp -r ${opusfile} $sourceRoot/vendor/opusfile
-            
+
             # 由于从flake inputs复制，目录可能是只读的
             chmod -R u+w $sourceRoot/vendor
           '';
@@ -87,17 +106,17 @@
             pkgs.glfw
             pkgs.libsndfile
             pkgs.libmpg123
-            pkgs.xorg.libXrandr
-            pkgs.xorg.libXinerama
-            pkgs.xorg.libXcursor
-            pkgs.xorg.libXi
+            pkgs.libxrandr
+            pkgs.libxinerama
+            pkgs.libxcursor
+            pkgs.libxi
           ];
 
           buildPhase = ''
             cd ..
-            
+
             export PKG_CONFIG_PATH="${pkgs.glfw}/lib/pkgconfig:${pkgs.openal}/lib/pkgconfig:${pkgs.libmpg123}/lib/pkgconfig:$PKG_CONFIG_PATH"
-            
+
             cmake -S . -B build \
               -G "Unix Makefiles" \
               -DCMAKE_BUILD_TYPE=${buildType} \
@@ -106,7 +125,7 @@
               -DLIBRW_PLATFORM=GL3 \
               -DLIBRW_GL3_GFXLIB=GLFW \
               -Wno-dev
-            
+
             cd build
             make -j$NIX_BUILD_CORES
           '';
@@ -152,17 +171,23 @@
           };
         };
 
-      mkPackages = system:
-        let pkgs = mkPkgs system;
-        in {
+      mkPackages =
+        system:
+        let
+          pkgs = mkPkgs system;
+        in
+        {
           reVC-Improved = buildRe3 pkgs "Release";
           reVC-Improved-debug = buildRe3 pkgs "Debug";
           default = buildRe3 pkgs "Release";
         };
 
-      mkDevShell = system:
-        let pkgs = mkPkgs system;
-        in pkgs.mkShell {
+      mkDevShell =
+        system:
+        let
+          pkgs = mkPkgs system;
+        in
+        pkgs.mkShell {
           buildInputs = [
             pkgs.cmake
             pkgs.gcc
@@ -180,10 +205,10 @@
             pkgs.glfw
             pkgs.libsndfile
             pkgs.libmpg123
-            pkgs.xorg.libXrandr
-            pkgs.xorg.libXinerama
-            pkgs.xorg.libXcursor
-            pkgs.xorg.libXi
+            pkgs.libxrandr
+            pkgs.libxinerama
+            pkgs.libxcursor
+            pkgs.libxi
           ];
 
           shellHook = ''
@@ -196,7 +221,7 @@
     in
     {
       packages = forAllSystems mkPackages;
-      
+
       devShells = forAllSystems (system: {
         default = mkDevShell system;
       });
