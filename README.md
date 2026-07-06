@@ -18,7 +18,7 @@ For easy installation and running on NixOS, a Nix wrapper has been written in [r
 
 Compared to other branches, the reVC branch has made more changes:
 
-- Built-in Chinese support
+- Built-in Chinese supports
 - Added related tools for unpacking, translating, and packing text
 - Added tool for automatically generating character tables
 - Added tool for generating Chinese font texture maps based on character tables and custom fonts
